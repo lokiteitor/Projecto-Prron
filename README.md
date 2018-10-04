@@ -1,2 +1,2 @@
-# Projecto-Prron
-Software de comedor para una para una empresa
+# Proyecto-Prron
+Software de comedor para una para una empresa 
