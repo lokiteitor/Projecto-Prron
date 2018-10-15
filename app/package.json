@@ -1,0 +1,27 @@
+{
+  "name": "proyecto-prron",
+  "version": "1.0.0",
+  "description": "Proyecto de Lenguajes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lokiteitor/Projecto-Prron.git"
+  },
+  "keywords": [
+    "Vue"
+  ],
+  "author": "David Delgado <lokiteitor513@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lokiteitor/Projecto-Prron/issues"
+  },
+  "homepage": "https://github.com/lokiteitor/Projecto-Prron#readme",
+  "devDependencies": {
+        "bootstrap": "^4.0.0",
+        "vue": "^2.5.7"
+    }
+
+}
