@@ -20,8 +20,7 @@
   },
   "homepage": "https://github.com/lokiteitor/Projecto-Prron#readme",
   "devDependencies": {
-        "bootstrap": "^4.0.0",
-        "vue": "^2.5.7"
-    }
-
+    "bootstrap": "^4.0.0",
+    "vue": "^2.5.7"
+  }
 }
