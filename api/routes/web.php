@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Definiendo la ruta de inicio
+Route::get('/{any}', 'SpaController@index')->where('any', '.*'); 
