@@ -6,20 +6,24 @@ services:
         ports:
             - 3306
         environment:
-            MYSQL_ROOT_PASSWORD: pass
-            MYSQL_DATABASE: comedordb
+          MYSQL_USER: app
+          MYSQL_PASSWORD: pass
+          MYSQL_ROOT_PASSWORD: passr
+          MYSQL_DATABASE: comedordb
 
     HTTP:
         image: lokiteitor:laravel
+        build:
+            context: ./
         volumes:
-            - ./../app:/var/www/html
+            - ./../api:/var/www/
             - ./logs/:/var/log/apache2/
-            - ./apache/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+            - ./apache/000-default.conf:/usr/local/apache2/htdocs/
         container_name: HTTP
         links:
             - DB:mysql
         ports:
-            - 80
+            - "80:80"
             - 443
     proxy-inverse:
         image: nginx:alpine
@@ -28,6 +32,4 @@ services:
         container_name: proxy
         links:
             - HTTP:http
-        ports:
-            - "80:80"
-            - "443:443"
+
