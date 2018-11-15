@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Departamento;
 use Illuminate\Http\Request;
+use App\Http\Resources\Departamento as DepartamentoResource;
+use App\Departamento;
 
 class DepartamentoController extends Controller
 {
@@ -14,17 +15,8 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        // mostrar todos los registros
+        return DepartamentoResource::collection(Departamento::paginate(5));
     }
 
     /**
@@ -36,50 +28,50 @@ class DepartamentoController extends Controller
     public function store(Request $request)
     {
         //
+        $departamento = Departamento::create([
+            'nombre' => $request->id,
+            'descripcion' => $request->descripcion
+        ]);
+        return new DepartamentoResource($departamento);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Departamento  $departamento
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Departamento $departamento)
+    public function show($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Departamento  $departamento
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Departamento $departamento)
-    {
-        //
+        return new DepartamentoResource(Departamento::find($id))
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Departamento  $departamento
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Departamento $departamento)
+    public function update(Request $request, $id)
     {
         //
+        $departamento = Departamento::find($id);
+        $departamento->update($request->only(['nombre','descripcion']));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Departamento  $departamento
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Departamento $departamento)
+    public function destroy($id)
     {
         //
+        $departamento = Departamento::find($id);
+        $departamento->delete();
+        return response()->json(null,204);
     }
 }

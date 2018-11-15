@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\Empleado as EmpleadoResource;
-use App\Empleado;
-use App\Departamento;
+use App\Http\Resources\Registro as RegistroResource;
+use App\Registro_comida;
 
-class EmpleadoController extends Controller
+class RegistroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        //
-        return EmpleadoResource::collection(Empleado::paginate(30));
+        // TODO : no mostrar todos los registros        
     }
 
     /**
@@ -28,17 +26,12 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        // TODO : revisar relacion departamento
-        $empleado = Empleado::create([
-            'nomina' => $request->nomina,
-            'nombre' => $request->nombre,
-            'ap_paterno' => $request->ap_paterno,
-            'ap_materno' => $request->ap_materno,
-            'direccion' => $request->direccion,
-            'tipo_empleado' => $request->tipo,
-            'sueldo' => $request->sueldo,
-            'id_departamento' => Departamento::find($request->departamento)
-        ]);
+        // TODO : automatizar el registro de la fecha
+        $registro = Registro::create([
+            'comida' => $request->comida,
+            'nomina' => $request->empleado,
+            'fecha' => $request->fecha
+        ])
     }
 
     /**
@@ -49,8 +42,8 @@ class EmpleadoController extends Controller
      */
     public function show($id)
     {
-        //
-        return new EmpleadoResource(Empleado::find($id));
+        // TODO : quizas mostrar un solo registro sea innecesario
+        return null;
     }
 
     /**
@@ -62,11 +55,8 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // TODO : actualizar departamento
-        $empleado = Empleado::find($id);
-        $empleado->update($request->only(['nombre','ap_paterno',
-            'ap_materno','direccion','tipo_empleado','sueldo'
-    ]))
+        // TODO : actualizar un registro es innecesario
+        return null;
     }
 
     /**
@@ -78,8 +68,8 @@ class EmpleadoController extends Controller
     public function destroy($id)
     {
         //
-        $empleado = Empleado::find($id);
-        $empleado->delete();
+        $registro = Registro::find($id)->delete();
         return response()->json(null,204);
+
     }
 }

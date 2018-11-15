@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Comida;
 use Illuminate\Http\Request;
+use App\Http\Resources\Comida as ComidaResource;
+use App\Comida;
 
 class ComidaController extends Controller
 {
@@ -15,16 +16,7 @@ class ComidaController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return ComidaResource::collection(Comida::paginate(5));
     }
 
     /**
@@ -36,50 +28,51 @@ class ComidaController extends Controller
     public function store(Request $request)
     {
         //
+        $comida = Comida::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'costo' => $request->costo
+        ]);
+
+        return new ComidaResource($comida);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Comida  $comida
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Comida $comida)
+    public function show($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Comida  $comida
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comida $comida)
-    {
-        //
+        return new ComidaResource(Comida::find($id));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comida  $comida
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comida $comida)
+    public function update(Request $request, $id)
     {
         //
+        $comida = Comida::find($id);
+        $comida->update($request->only(['nombre','descripcion','costo']));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comida  $comida
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comida $comida)
+    public function destroy($id)
     {
         //
+        Comida::find($id)->delete();
+        return response()->json(null,204);
     }
 }
