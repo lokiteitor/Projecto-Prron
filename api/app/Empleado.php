@@ -19,5 +19,6 @@ class Empleado extends Model
     public function registros()
     {
         return $this->hasMany('App\Registro_comida','nomina','nomina');
+
     }
 }

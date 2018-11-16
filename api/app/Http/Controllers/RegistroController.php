@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\Registro as RegistroResource;
 use App\Registro_comida as Registro;
+use App\Empleado;
+use App\Http\Resources\RegistroCollection;
 
 class RegistroController extends Controller
 {
@@ -73,5 +75,11 @@ class RegistroController extends Controller
         Registro::findOrFail($id)->delete();
         return response()->json(['mensaje'=>'Elemento eliminado'],204);
 
+    }
+
+    public function getEmpleadoRegistros(Request $request,$idEmpleado)
+    {
+        $registros = Empleado::findOrFail($idEmpleado)->registros;
+        return new RegistroCollection($registros);
     }
 }
