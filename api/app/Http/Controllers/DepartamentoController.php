@@ -29,7 +29,7 @@ class DepartamentoController extends Controller
     {
         //
         $departamento = Departamento::create([
-            'nombre' => $request->id,
+            'nombre' => $request->nombre,
             'descripcion' => $request->descripcion
         ]);
         return new DepartamentoResource($departamento);
@@ -44,7 +44,9 @@ class DepartamentoController extends Controller
     public function show($id)
     {
         //
-        return new DepartamentoResource(Departamento::find($id))
+        $departamento = Departamento::findOrFail($id);
+        return new DepartamentoResource($departamento);
+        
     }
 
     /**
@@ -57,8 +59,11 @@ class DepartamentoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $departamento = Departamento::find($id);
-        $departamento->update($request->only(['nombre','descripcion']));
+        $departamento = Departamento::findOrFail($id);
+        $departamento->nombre = $request->nombre;
+        $departamento->descripcion = $request->descripcion;
+        $departamento->save();
+        return new DepartamentoResource($departamento);
     }
 
     /**
@@ -70,7 +75,7 @@ class DepartamentoController extends Controller
     public function destroy($id)
     {
         //
-        $departamento = Departamento::find($id);
+        $departamento = Departamento::findOrFail($id);
         $departamento->delete();
         return response()->json(null,204);
     }

@@ -37,8 +37,9 @@ class EmpleadoController extends Controller
             'direccion' => $request->direccion,
             'tipo_empleado' => $request->tipo,
             'sueldo' => $request->sueldo,
-            'id_departamento' => Departamento::find($request->departamento)
+            'id_departamento' => $request->departamento
         ]);
+        return new EmpleadoResource($empleado);
     }
 
     /**
@@ -50,7 +51,7 @@ class EmpleadoController extends Controller
     public function show($id)
     {
         //
-        return new EmpleadoResource(Empleado::find($id));
+        return new EmpleadoResource(Empleado::findOrFail($id));
     }
 
     /**
@@ -63,10 +64,11 @@ class EmpleadoController extends Controller
     public function update(Request $request, $id)
     {
         // TODO : actualizar departamento
-        $empleado = Empleado::find($id);
+        $empleado = Empleado::findOrFail($id);
         $empleado->update($request->only(['nombre','ap_paterno',
-            'ap_materno','direccion','tipo_empleado','sueldo'
-    ]))
+            'ap_materno','direccion','tipo','sueldo'
+        ]));
+        return new EmpleadoResource($empleado);
     }
 
     /**
@@ -78,8 +80,8 @@ class EmpleadoController extends Controller
     public function destroy($id)
     {
         //
-        $empleado = Empleado::find($id);
+        $empleado = Empleado::findOrFail($id);
         $empleado->delete();
-        return response()->json(null,204);
+        return response()->json(['mensaje'=>'Elemento eliminado'],204);
     }
 }

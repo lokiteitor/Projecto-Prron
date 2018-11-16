@@ -46,7 +46,7 @@ class ComidaController extends Controller
     public function show($id)
     {
         //
-        return new ComidaResource(Comida::find($id));
+        return new ComidaResource(Comida::findOrFail($id));
     }
 
     /**
@@ -61,6 +61,7 @@ class ComidaController extends Controller
         //
         $comida = Comida::find($id);
         $comida->update($request->only(['nombre','descripcion','costo']));
+        return new ComidaResource($comida);
     }
 
     /**
@@ -72,7 +73,7 @@ class ComidaController extends Controller
     public function destroy($id)
     {
         //
-        Comida::find($id)->delete();
+        Comida::findOrFail($id)->delete();
         return response()->json(null,204);
     }
 }

@@ -1,0 +1,554 @@
+{
+	"info": {
+		"_postman_id": "916fbbad-eecc-4908-9dc0-2ba122f5de00",
+		"name": "Projecto-Prron",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "departamento",
+			"item": [
+				{
+					"name": "$host/api/departamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/departamento",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"departamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/departamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "departamentoT",
+									"type": "text"
+								},
+								{
+									"key": "descripcion",
+									"value": "este departamento de prueba",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "comedor.com/api/departamento",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"departamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/departamento/12",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/departamento/1",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"departamento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/departamento/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/departamento/1",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"departamento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/departamento/1?nombre=otro nombre&descripcion=otra descripcion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/departamento/1?nombre=otro nombre&descripcion=otra descripcion",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"departamento",
+								"1"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "otro nombre"
+								},
+								{
+									"key": "descripcion",
+									"value": "otra descripcion"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comida",
+			"item": [
+				{
+					"name": "localhost:8000/api/comida",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/comida",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"comida"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/comida/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/comida/1",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"comida",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/comida/1",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/comida/1?nombre=otra comida&descripcion=otra descripcion&costo=9999",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"comida",
+								"1"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "otra comida",
+									"description": "\n"
+								},
+								{
+									"key": "descripcion",
+									"value": "otra descripcion"
+								},
+								{
+									"key": "costo",
+									"value": "9999"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/comida/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/comida/21",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"comida",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comedor.com/api/comida?nombre=nueva comida&descripcion=desc comida&costo=99.10",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/comida?nombre=nueva comida&descripcion=desc comida&costo=99.10",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"comida"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "nueva comida"
+								},
+								{
+									"key": "descripcion",
+									"value": "desc comida"
+								},
+								{
+									"key": "costo",
+									"value": "99.10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empleado",
+			"item": [
+				{
+					"name": "localhost:8000/api/comida",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/empleado",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"empleado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/empleado/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/empleado/7907",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"empleado",
+								"7907"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/empleado?nomina=560303&nombre=empleado&ap_paterno=delgado&ap_materno=hernandez&direccion=mi direccion&tipo_empleado=confianza&sueldo=59595.50&id_departamento=4",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/empleado?nomina=560303&nombre=empleado&ap_paterno=delgado&ap_materno=hernandez&direccion=mi direccion&tipo=confianza&sueldo=59595&departamento=4",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"empleado"
+							],
+							"query": [
+								{
+									"key": "nomina",
+									"value": "560303"
+								},
+								{
+									"key": "nombre",
+									"value": "empleado"
+								},
+								{
+									"key": "ap_paterno",
+									"value": "delgado"
+								},
+								{
+									"key": "ap_materno",
+									"value": "hernandez"
+								},
+								{
+									"key": "direccion",
+									"value": "mi direccion"
+								},
+								{
+									"key": "tipo",
+									"value": "confianza"
+								},
+								{
+									"key": "sueldo",
+									"value": "59595"
+								},
+								{
+									"key": "departamento",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/empleado/7907?nombre=otro nombre&ap_paterno=otroAp&ap_materno=otroAp&direccion=otra direccion&tipo=operario&suedo=9999",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/empleado/7907?nombre=otro nombre&ap_paterno=otroAp&ap_materno=otroAp&direccion=otra direccion&tipo=operario&suedo=9999",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"empleado",
+								"7907"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "otro nombre"
+								},
+								{
+									"key": "ap_paterno",
+									"value": "otroAp"
+								},
+								{
+									"key": "ap_materno",
+									"value": "otroAp"
+								},
+								{
+									"key": "direccion",
+									"value": "otra direccion"
+								},
+								{
+									"key": "tipo",
+									"value": "operario"
+								},
+								{
+									"key": "suedo",
+									"value": "9999"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/empleado/7907",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/empleado/7907",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"empleado",
+								"7907"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Registros",
+			"item": [
+				{
+					"name": "comedor.com/api/registro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/registro?comida=3&nomina=1783&fecha=2018-11-16",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"registro"
+							],
+							"query": [
+								{
+									"key": "comida",
+									"value": "3"
+								},
+								{
+									"key": "nomina",
+									"value": "1783"
+								},
+								{
+									"key": "fecha",
+									"value": "2018-11-16"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comedor.com/api/registro/17440",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/registro/17448",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"registro",
+								"17448"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

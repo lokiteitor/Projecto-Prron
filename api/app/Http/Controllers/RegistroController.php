@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\Registro as RegistroResource;
-use App\Registro_comida;
+use App\Registro_comida as Registro;
 
 class RegistroController extends Controller
 {
@@ -28,10 +28,11 @@ class RegistroController extends Controller
     {
         // TODO : automatizar el registro de la fecha
         $registro = Registro::create([
-            'comida' => $request->comida,
-            'nomina' => $request->empleado,
+            'id_comida' => $request->comida,
+            'nomina' => $request->nomina,
             'fecha' => $request->fecha
-        ])
+        ]);
+        return new RegistroResource($registro);
     }
 
     /**
@@ -43,6 +44,7 @@ class RegistroController extends Controller
     public function show($id)
     {
         // TODO : quizas mostrar un solo registro sea innecesario
+        // mostrar los registros de un empleado
         return null;
     }
 
@@ -67,9 +69,9 @@ class RegistroController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $registro = Registro::find($id)->delete();
-        return response()->json(null,204);
+        // TODO : lanza pagina de codigo 404 en vez de 204
+        Registro::findOrFail($id)->delete();
+        return response()->json(['mensaje'=>'Elemento eliminado'],204);
 
     }
 }

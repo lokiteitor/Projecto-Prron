@@ -2,7 +2,11 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Comida as ComidaResource;
+use App\Http\Resources\Empleado as EmpleadoResource;
+use App\Empleado;
+use App\Comida;
 
 class Registro extends JsonResource
 {
@@ -16,9 +20,9 @@ class Registro extends JsonResource
     {
         return [
             'id' => $this->id,
-            'comida' => ComidaResource::collection($this->id_comida),
-            'empleado' => Empleado::collection($this->nomina),
+            'id_comida' => new ComidaResource(Comida::find($request->comida)),
+            'nomina' => new EmpleadoResource(Empleado::find($request->nomina)),
             'fecha' => $this->fecha
-        ]
+        ];
     }
 }
