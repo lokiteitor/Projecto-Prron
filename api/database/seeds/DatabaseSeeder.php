@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
                 for ($i=0; $i < 150; $i++) { 
                     $empleado->registros()->save(factory(App\Registro_comida::class)->create([
                         'id_comida' => $comidas->random(),
-                        'nomina' => $empleado->id
+                        'nomina' => $empleado->nomina
                     ]));
                 }
             }
