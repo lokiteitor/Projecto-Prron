@@ -17,7 +17,6 @@ class CreateRegistroComidasTable extends Migration
             $table->increments('id');
             $table->integer('id_comida');
             $table->integer('nomina');
-            $table->date('fecha')->nullable(false);
             $table->timestamps();
         });
     }
