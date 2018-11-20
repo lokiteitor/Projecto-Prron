@@ -15,28 +15,37 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import App from './views/App'
-import Home from './views/Home'
-import Menu from './views/Menu'
+import Register from './views/Register'
+import Menu from './views/FoodDescription'
+import Employed from './views/Employed'
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
         {
             path: '/',
-            name: 'home',
-            component: Home,
+            name: 'register',
+            component: Register,
             meta: {
-                title: 'Comedor'
+                title: 'Enterprise Name'
             }
         },
         {
-            path: '/menu',
+            path: '/Platillo',
             name: 'menu',
             component: Menu,
             meta: {
-                title: 'Menu'
+                title: 'Registro | Platillo'
             }
         },
+        {
+            path: '/Registrar-Empleado',
+            name: 'employed',
+            component: Employed,
+            meta: {
+                title: 'Registro | Empleado'
+            }
+        }
     ],
 });
 
