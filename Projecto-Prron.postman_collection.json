@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "916fbbad-eecc-4908-9dc0-2ba122f5de00",
+		"_postman_id": "b08e5fac-d524-4767-ac83-9b73c584d1ba",
 		"name": "Projecto-Prron",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -18,7 +18,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/departamento",
+							"raw": "comedor.com/api/departamento?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
 							"host": [
 								"comedor",
 								"com"
@@ -26,6 +26,50 @@
 							"path": [
 								"api",
 								"departamento"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/departamento/12",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/departamento/1?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"departamento",
+								"1"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								}
 							]
 						}
 					},
@@ -42,17 +86,19 @@
 								{
 									"key": "nombre",
 									"value": "departamentoT",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "descripcion",
 									"value": "este departamento de prueba",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "comedor.com/api/departamento",
+							"raw": "comedor.com/api/departamento?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==&nombre=mi departamento&descripcion=mi descripcion",
 							"host": [
 								"comedor",
 								"com"
@@ -60,54 +106,24 @@
 							"path": [
 								"api",
 								"departamento"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "localhost:8000/api/departamento/12",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "comedor.com/api/departamento/1",
-							"host": [
-								"comedor",
-								"com"
 							],
-							"path": [
-								"api",
-								"departamento",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "localhost:8000/api/departamento/1",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "comedor.com/api/departamento/1",
-							"host": [
-								"comedor",
-								"com"
-							],
-							"path": [
-								"api",
-								"departamento",
-								"1"
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								},
+								{
+									"key": "nombre",
+									"value": "mi departamento"
+								},
+								{
+									"key": "descripcion",
+									"value": "mi descripcion"
+								}
 							]
 						}
 					},
@@ -123,7 +139,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/departamento/1?nombre=otro nombre&descripcion=otra descripcion",
+							"raw": "comedor.com/api/departamento/1?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==&nombre=otro nombre&descripcion=otra descripcion",
 							"host": [
 								"comedor",
 								"com"
@@ -135,12 +151,54 @@
 							],
 							"query": [
 								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								},
+								{
 									"key": "nombre",
 									"value": "otro nombre"
 								},
 								{
 									"key": "descripcion",
 									"value": "otra descripcion"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/api/departamento/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/departamento/1?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"departamento",
+								"1"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
 								}
 							]
 						}
@@ -162,7 +220,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/comida",
+							"raw": "comedor.com/api/comida?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
 							"host": [
 								"comedor",
 								"com"
@@ -170,6 +228,16 @@
 							"path": [
 								"api",
 								"comida"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								}
 							]
 						}
 					},
@@ -185,7 +253,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/comida/1",
+							"raw": "comedor.com/api/comida/1?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
 							"host": [
 								"comedor",
 								"com"
@@ -194,6 +262,69 @@
 								"api",
 								"comida",
 								"1"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comedor.com/api/comida?nombre=nueva comida&descripcion=desc comida&costo=99.10",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/comida?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==nombre=nueva comida&descripcion=desccomida&costo=99.10&user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==&nombre=mi comida",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"comida"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg==nombre=nueva comida"
+								},
+								{
+									"key": "descripcion",
+									"value": "desccomida"
+								},
+								{
+									"key": "costo",
+									"value": "99.10"
+								},
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								},
+								{
+									"key": "nombre",
+									"value": "mi comida"
+								}
 							]
 						}
 					},
@@ -209,7 +340,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/comida/1?nombre=otra comida&descripcion=otra descripcion&costo=9999",
+							"raw": "comedor.com/api/comida/1?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==&nombre=otra comida&descripcion=otra descripcion&costo=9999.90",
 							"host": [
 								"comedor",
 								"com"
@@ -221,9 +352,16 @@
 							],
 							"query": [
 								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								},
+								{
 									"key": "nombre",
-									"value": "otra comida",
-									"description": "\n"
+									"value": "otra comida"
 								},
 								{
 									"key": "descripcion",
@@ -231,7 +369,7 @@
 								},
 								{
 									"key": "costo",
-									"value": "9999"
+									"value": "9999.90"
 								}
 							]
 						}
@@ -248,7 +386,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/comida/21",
+							"raw": "comedor.com/api/comida/21?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
 							"host": [
 								"comedor",
 								"com"
@@ -257,42 +395,15 @@
 								"api",
 								"comida",
 								"21"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "comedor.com/api/comida?nombre=nueva comida&descripcion=desc comida&costo=99.10",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "comedor.com/api/comida?nombre=nueva comida&descripcion=desc comida&costo=99.10",
-							"host": [
-								"comedor",
-								"com"
-							],
-							"path": [
-								"api",
-								"comida"
 							],
 							"query": [
 								{
-									"key": "nombre",
-									"value": "nueva comida"
+									"key": "user",
+									"value": "administrador"
 								},
 								{
-									"key": "descripcion",
-									"value": "desc comida"
-								},
-								{
-									"key": "costo",
-									"value": "99.10"
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
 								}
 							]
 						}
@@ -314,7 +425,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/empleado",
+							"raw": "comedor.com/api/empleado?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
 							"host": [
 								"comedor",
 								"com"
@@ -322,6 +433,16 @@
 							"path": [
 								"api",
 								"empleado"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								}
 							]
 						}
 					},
@@ -337,7 +458,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/empleado/7907",
+							"raw": "comedor.com/api/empleado/2117?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
 							"host": [
 								"comedor",
 								"com"
@@ -345,7 +466,17 @@
 							"path": [
 								"api",
 								"empleado",
-								"7907"
+								"2117"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								}
 							]
 						}
 					},
@@ -361,7 +492,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/empleado?nomina=560303&nombre=empleado&ap_paterno=delgado&ap_materno=hernandez&direccion=mi direccion&tipo=confianza&sueldo=59595&departamento=4",
+							"raw": "comedor.com/api/empleado?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==&nomina=560303&nombre=empleado&ap_paterno=delgado&ap_materno=hernandez&direccion=mi direccion&tipo=confianza&sueldo=59595&departamento=4",
 							"host": [
 								"comedor",
 								"com"
@@ -371,6 +502,14 @@
 								"empleado"
 							],
 							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								},
 								{
 									"key": "nomina",
 									"value": "560303"
@@ -418,7 +557,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/empleado/7907?nombre=otro nombre&ap_paterno=otroAp&ap_materno=otroAp&direccion=otra direccion&tipo=operario&suedo=9999",
+							"raw": "comedor.com/api/empleado/560303?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==&nombre=otro nombre&ap_paterno=otroAp&ap_materno=otroAp&direccion=otra direccion&tipo=operario&sueldo=9999&departamento=4",
 							"host": [
 								"comedor",
 								"com"
@@ -426,9 +565,17 @@
 							"path": [
 								"api",
 								"empleado",
-								"7907"
+								"560303"
 							],
 							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								},
 								{
 									"key": "nombre",
 									"value": "otro nombre"
@@ -450,8 +597,12 @@
 									"value": "operario"
 								},
 								{
-									"key": "suedo",
+									"key": "sueldo",
 									"value": "9999"
+								},
+								{
+									"key": "departamento",
+									"value": "4"
 								}
 							]
 						}
@@ -468,7 +619,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/empleado/7907",
+							"raw": "comedor.com/api/empleado/560303?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
 							"host": [
 								"comedor",
 								"com"
@@ -476,7 +627,17 @@
 							"path": [
 								"api",
 								"empleado",
-								"7907"
+								"560303"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								}
 							]
 						}
 					},
@@ -488,6 +649,41 @@
 			"name": "Registros",
 			"item": [
 				{
+					"name": "comedor.com/api/empleado/2117/registros?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/empleado/2117/registros?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"empleado",
+								"2117",
+								"registros"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "comedor.com/api/registro",
 					"request": {
 						"method": "POST",
@@ -497,7 +693,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/registro?comida=3&nomina=1783&fecha=2018-11-16",
+							"raw": "comedor.com/api/registro?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==&comida=3&nomina=2117",
 							"host": [
 								"comedor",
 								"com"
@@ -508,16 +704,25 @@
 							],
 							"query": [
 								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								},
+								{
 									"key": "comida",
 									"value": "3"
 								},
 								{
 									"key": "nomina",
-									"value": "1783"
+									"value": "2117"
 								},
 								{
 									"key": "fecha",
-									"value": "2018-11-16"
+									"value": "2018-11-16",
+									"disabled": true
 								}
 							]
 						}
@@ -534,7 +739,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/registro/17448",
+							"raw": "comedor.com/api/registro/2117?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
 							"host": [
 								"comedor",
 								"com"
@@ -542,7 +747,17 @@
 							"path": [
 								"api",
 								"registro",
-								"17448"
+								"2117"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								}
 							]
 						}
 					},

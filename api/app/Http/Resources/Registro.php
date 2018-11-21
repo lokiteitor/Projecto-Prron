@@ -20,9 +20,8 @@ class Registro extends JsonResource
     {
         return [
             'id' => $this->id,
-            'id_comida' => new ComidaResource(Comida::find($request->comida)),
-            'nomina' => new EmpleadoResource(Empleado::find($request->nomina)),
-            'fecha' => $this->fecha
+            'id_comida' => new ComidaResource(Comida::find($this->id_comida)),
+            'nomina' => $this->nomina
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\Comida as ComidaResource;
 use App\Comida;
+use Validator;
 
 class ComidaController extends Controller
 {
@@ -27,7 +28,20 @@ class ComidaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validar 
+        $rules = [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'costo' => 'required|numeric'
+        ];
+
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 422);
+        }
+
+
         $comida = Comida::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
@@ -59,6 +73,17 @@ class ComidaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $rules = [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'costo' => 'required|numeric'
+        ];
+
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 422);
+        }        
         $comida = Comida::find($id);
         $comida->update($request->only(['nombre','descripcion','costo']));
         return new ComidaResource($comida);

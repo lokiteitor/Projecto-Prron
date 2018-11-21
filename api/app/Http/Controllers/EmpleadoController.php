@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Empleado as EmpleadoResource;
 use App\Empleado;
 use App\Departamento;
+use Illuminate\Validation\Rule;
+use Validator;
+
 
 class EmpleadoController extends Controller
 {
@@ -29,6 +32,23 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         // TODO : revisar relacion departamento
+        $rules = [
+            'nomina' => 'required|integer|unique:empleados,nomina',
+            'nombre' => 'required',
+            'ap_paterno' => 'required',
+            'ap_materno' => 'required',
+            'direccion' => 'required',
+            'tipo' => ['required',Rule::in(['operario','confianza'])],
+            'sueldo' => 'required|numeric',
+            'departamento' => 'required|exists:departamentos,id'
+        ];
+
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 422);
+        }
+                   
         $empleado = Empleado::create([
             'nomina' => $request->nomina,
             'nombre' => $request->nombre,
@@ -63,6 +83,21 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = [
+            'nombre' => 'required',
+            'ap_paterno' => 'required',
+            'ap_materno' => 'required',
+            'direccion' => 'required',
+            'tipo' => ['required',Rule::in(['operario','confianza'])],
+            'sueldo' => 'required|numeric',
+            'departamento' => 'required|exists:departamentos,id'
+        ];
+
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 422);
+        }       
         // TODO : actualizar departamento
         $empleado = Empleado::findOrFail($id);
         $empleado->update($request->only(['nombre','ap_paterno',
