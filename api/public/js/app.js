@@ -50705,45 +50705,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [],
+	mixins: [],
 
-  computed: {
-    formData: function formData() {
-      return {
-        nomina: this.nomina
-      };
-    }
-  },
+	computed: {
+		formData: function formData() {
+			return {
+				nomina: this.nomina
+			};
+		}
+	},
 
-  data: function data() {
-    return {
-      employed: [],
-      nomina: '998921'
-    };
-  },
+	watch: {
+		nomina: function nomina(newValue) {
+			this.getEmployed();
+			this.getDescription();
+		}
+	},
+
+	data: function data() {
+		return {
+			employed: [],
+			description: [],
+			nomina: ''
+		};
+	},
 
 
-  methods: {
-    getEmployed: function getEmployed() {
-      var _this = this;
+	methods: {
+		getEmployed: function getEmployed() {
+			var _this = this;
 
-      axios.get('/api/empleado/${this.nomina}/registros').then(function (res) {
-        _this.employed = res.data;
-      }).catch(function (err) {
-        console.log(err);
-      });
-    }
-  },
+			axios.get('/api/empleado/' + this.nomina).then(function (res) {
+				_this.employed = res.data.data;
+			}).catch(function (err) {
+				console.log(err);
+			});
+		},
+		getDescription: function getDescription() {
+			var _this2 = this;
 
-  created: function created() {
-    this.getEmployed();
-  },
-  mounted: function mounted() {
-    this.getEmployed();
-  }
+			axios.get('/api/empleado/' + this.nomina).then(function (res) {
+				_this2.description = res.data.data.departamento;
+			}).catch(function (err) {
+				console.log(err);
+			});
+		}
+	}
+
 });
 
 /***/ }),
@@ -50754,42 +50764,64 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("form", [
+  return _c("div", { staticClass: "row" }, [
+    _c("form", [
+      _c("div", { staticClass: "form-row" }, [
+        _c("div", { staticClass: "form-group col-md-3" }, [
+          _c("label", [_vm._v("Nomina")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.nomina,
+                expression: "nomina"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.nomina },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.nomina = $event.target.value
+              }
+            }
+          }),
+          _c("br")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("fieldset", { attrs: { disabled: "" } }, [
         _c("div", { staticClass: "form-row" }, [
-          _c("div", { staticClass: "form-group col-md-3" }, [
-            _c("label", [_vm._v("Nomina")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-row" }, [
-          _c("div", { staticClass: "form-group col-md-6" }, [
-            _c("label", [_vm._v("Nombre(s)")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text" }
-            })
-          ]),
+          _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-md-6" }, [
             _c("label", [_vm._v("Apellido Paterno")]),
             _vm._v(" "),
             _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.employed.ap_materno,
+                  expression: "employed.ap_materno"
+                }
+              ],
               staticClass: "form-control",
-              attrs: { type: "text" }
+              attrs: { type: "text" },
+              domProps: { value: _vm.employed.ap_materno },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.employed, "ap_materno", $event.target.value)
+                }
+              }
             })
           ])
         ]),
@@ -50797,34 +50829,98 @@ var staticRenderFns = [
         _c("div", { staticClass: "form-group" }, [
           _c("label", [_vm._v("Dirección")]),
           _vm._v(" "),
-          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.employed.direccion,
+                expression: "employed.direccion"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.employed.direccion },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.employed, "direccion", $event.target.value)
+              }
+            }
+          })
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-row" }, [
-          _c("div", { staticClass: "form-group col-md-2" }, [
+          _c("div", { staticClass: "form-group col-md-6" }, [
             _c("label", [_vm._v("Departamento")]),
             _vm._v(" "),
-            _c("input", {
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.description.descripcion,
+                  expression: "description.descripcion"
+                }
+              ],
               staticClass: "form-control",
-              attrs: { type: "text" }
+              domProps: { value: _vm.description.descripcion },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.description, "descripcion", $event.target.value)
+                }
+              }
             })
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-md-2" }, [
             _c("label", [_vm._v("Tipo de empleado")]),
             _vm._v(" "),
-            _c("select", { staticClass: "custom-select" }, [
-              _c("option", { attrs: { value: "1" } }, [_vm._v("One")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [_vm._v("Two")])
-            ])
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.employed.empleado,
+                  expression: "employed.empleado"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text" },
+              domProps: { value: _vm.employed.empleado },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.employed, "empleado", $event.target.value)
+                }
+              }
+            })
           ])
-        ]),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn btn-primary" }, [
-          _vm._v("Solicitar Pedido")
         ])
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-primary" }, [
+        _vm._v("Solicitar Pedido")
       ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-md-6" }, [
+      _c("label", [_vm._v("Nombre(s)")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
     ])
   }
 ]

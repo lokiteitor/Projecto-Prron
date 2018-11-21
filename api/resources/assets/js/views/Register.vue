@@ -4,9 +4,10 @@
 		  <div class="form-row">
 		  	<div class="form-group col-md-3">
 		    	<label>Nomina</label>
-		    	<input type="text" class="form-control">
+		    	<input type="text" class="form-control" v-model="nomina"><br>
 		    </div>
 		   </div>
+		<fieldset disabled>
 		  <div class="form-row">
 		    <div class="form-group col-md-6">
 		    	<label>Nombre(s)</label>
@@ -14,26 +15,24 @@
 		    </div>
 		    <div class="form-group col-md-6">
 		    	<label>Apellido Paterno</label>
-		    	<input type="text" class="form-control">
+		    	<input type="text" class="form-control" v-model="employed.ap_materno">
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label>Dirección</label>
-		    <input type="text" class="form-control">
+		    <input type="text" class="form-control" v-model="employed.direccion">
 		  </div>	
 		  <div class="form-row">  
-		   <div class="form-group col-md-2">
+		   <div class="form-group col-md-6">
 		      <label>Departamento</label>
-		      <input type="text" class="form-control">
+		      <textarea class="form-control" v-model="description.descripcion"></textarea>
 		   </div>
 		   <div class="form-group col-md-2">
 		   	<label>Tipo de empleado</label>
-		      <select class="custom-select">
-				  <option value="1">One</option>
-				  <option value="2">Two</option>
-			  </select>
+		    <input type="text" class="form-control" v-model="employed.empleado">
 		   </div>
 		  </div>
+		</fieldset>
 		  <button class="btn btn-primary">Solicitar Pedido</button>
 		</form>
 	</div>
@@ -51,29 +50,36 @@
     		}
     	},
 
+    	watch:{
+    		nomina:function(newValue){
+    			this.getEmployed()
+    			this.getDescription()
+    		}
+    	},
+
     	data(){
     		return{
     			employed: [],
-    			nomina: '998921'
+    			description: [],
+    			nomina: ''
     		}
     	},
 
         methods:{
         	getEmployed(){
-        		 axios.get('/api/empleado/${this.nomina}/registros').then(res => {
-                    this.employed = res.data
+           		axios.get(`/api/empleado/${this.nomina}`).then(res => {
+                    this.employed = res.data.data
                 }).catch(err => {
                     console.log(err)
                 })
-        	}
-        },
-
-        created(){
-        	this.getEmployed()
-        },
-
-        mounted(){
-        	this.getEmployed()
+        	},
+        	getDescription(){
+           		axios.get(`/api/empleado/${this.nomina}`).then(res => {
+                    this.description = res.data.data.departamento
+                }).catch(err => {
+                    console.log(err)
+                })
+        	},
         }
 
     }
