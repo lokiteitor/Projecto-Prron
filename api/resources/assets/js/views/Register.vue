@@ -7,11 +7,11 @@
 		    	<input type="text" class="form-control" v-model="nomina"><br>
 		    </div>
 		   </div>
-		<fieldset disabled>
+		<fieldset disabled class="watch" v-bind:class="{active: isFinded}">
 		  <div class="form-row">
 		    <div class="form-group col-md-6">
 		    	<label>Nombre(s)</label>
-		    	<input type="text" class="form-control">
+		    	<input type="text" class="form-control" v-model="employed.nombre">
 		    </div>
 		    <div class="form-group col-md-6">
 		    	<label>Apellido Paterno</label>
@@ -45,7 +45,8 @@
     	computed:{
     		formData(){
     			return{
-    				nomina: this.nomina
+    				nomina: this.nomina,
+    				isFinded: this.isFinded
     			}
     		}
     	},
@@ -54,14 +55,16 @@
     		nomina:function(newValue){
     			this.getEmployed()
     			this.getDescription()
-    		}
+    			//this.changeState()
+    		},
     	},
 
     	data(){
     		return{
     			employed: [],
     			description: [],
-    			nomina: ''
+    			nomina: '',
+    			isFinded: false
     		}
     	},
 
@@ -80,6 +83,9 @@
                     console.log(err)
                 })
         	},
+        	changeState(){
+        		this.isFinded =! this.isFinded
+        	}
         }
 
     }
@@ -93,5 +99,11 @@
 	}
 	form{
 		width: 80vw;
+	}
+	.active{
+		display: none !important;
+	}
+	.watch{
+		display: block;
 	}
 </style>
