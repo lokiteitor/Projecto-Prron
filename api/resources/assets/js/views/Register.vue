@@ -25,7 +25,7 @@
 		  <div class="form-row">  
 		   <div class="form-group col-md-6">
 		      <label>Departamento</label>
-		      <textarea class="form-control" v-model="description.descripcion"></textarea>
+		      <input class="form-control" v-model="description.nombre"></input>
 		   </div>
 		   <div class="form-group col-md-2">
 		   	<label>Tipo de empleado</label>
@@ -45,7 +45,7 @@
     	computed:{
     		formData(){
     			return{
-    				nomina: this.nomina,
+					nomina: this.nomina,					
     				isFinded: this.isFinded
     			}
     		}
@@ -54,7 +54,7 @@
     	watch:{
     		nomina:function(newValue){
     			this.getEmployed()
-    			this.getDescription()
+				this.getDescription()
     			//this.changeState()
     		},
     	},
@@ -63,7 +63,7 @@
     		return{
     			employed: [],
     			description: [],
-    			nomina: '',
+				nomina: '',
     			isFinded: false
     		}
     	},
@@ -85,7 +85,7 @@
         	},
         	changeState(){
         		this.isFinded =! this.isFinded
-        	}
+			}
         }
 
     }

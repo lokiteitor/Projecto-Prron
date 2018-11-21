@@ -14300,7 +14300,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(62);
+module.exports = __webpack_require__(64);
 
 
 /***/ }),
@@ -14318,7 +14318,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_Register___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__views_Register__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_FoodDescription__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_FoodDescription___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__views_FoodDescription__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_Employed__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_Employed__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_Employed___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__views_Employed__);
 
 /**
@@ -50709,58 +50709,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	mixins: [],
+    mixins: [],
 
-	computed: {
-		formData: function formData() {
-			return {
-				nomina: this.nomina,
-				isFinded: this.isFinded
-			};
-		}
-	},
+    computed: {
+        formData: function formData() {
+            return {
+                nomina: this.nomina,
+                isFinded: this.isFinded
+            };
+        }
+    },
 
-	watch: {
-		nomina: function nomina(newValue) {
-			this.getEmployed();
-			this.getDescription();
-			//this.changeState()
-		}
-	},
+    watch: {
+        nomina: function nomina(newValue) {
+            this.getEmployed();
+            this.getDescription();
+            //this.changeState()
+        }
+    },
 
-	data: function data() {
-		return {
-			employed: [],
-			description: [],
-			nomina: '',
-			isFinded: false
-		};
-	},
+    data: function data() {
+        return {
+            employed: [],
+            description: [],
+            nomina: '',
+            isFinded: false
+        };
+    },
 
 
-	methods: {
-		getEmployed: function getEmployed() {
-			var _this = this;
+    methods: {
+        getEmployed: function getEmployed() {
+            var _this = this;
 
-			axios.get('/api/empleado/' + this.nomina).then(function (res) {
-				_this.employed = res.data.data;
-			}).catch(function (err) {
-				console.log(err);
-			});
-		},
-		getDescription: function getDescription() {
-			var _this2 = this;
+            axios.get('/api/empleado/' + this.nomina).then(function (res) {
+                _this.employed = res.data.data;
+            }).catch(function (err) {
+                console.log(err);
+            });
+        },
+        getDescription: function getDescription() {
+            var _this2 = this;
 
-			axios.get('/api/empleado/' + this.nomina).then(function (res) {
-				_this2.description = res.data.data.departamento;
-			}).catch(function (err) {
-				console.log(err);
-			});
-		},
-		changeState: function changeState() {
-			this.isFinded = !this.isFinded;
-		}
-	}
+            axios.get('/api/empleado/' + this.nomina).then(function (res) {
+                _this2.description = res.data.data.departamento;
+            }).catch(function (err) {
+                console.log(err);
+            });
+        },
+        changeState: function changeState() {
+            this.isFinded = !this.isFinded;
+        }
+    }
 
 });
 
@@ -50895,27 +50895,23 @@ var render = function() {
             _c("div", { staticClass: "form-group col-md-6" }, [
               _c("label", [_vm._v("Departamento")]),
               _vm._v(" "),
-              _c("textarea", {
+              _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.description.descripcion,
-                    expression: "description.descripcion"
+                    value: _vm.description.nombre,
+                    expression: "description.nombre"
                   }
                 ],
                 staticClass: "form-control",
-                domProps: { value: _vm.description.descripcion },
+                domProps: { value: _vm.description.nombre },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(
-                      _vm.description,
-                      "descripcion",
-                      $event.target.value
-                    )
+                    _vm.$set(_vm.description, "nombre", $event.target.value)
                   }
                 }
               })
@@ -50977,9 +50973,9 @@ function injectStyle (ssrContext) {
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(66)
+var __vue_script__ = __webpack_require__(57)
 /* template */
-var __vue_template__ = __webpack_require__(57)
+var __vue_template__ = __webpack_require__(58)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -51059,6 +51055,84 @@ exports.push([module.i, "\n.row[data-v-1e3e55bb]{\n\tpadding-top: 20px;\n}\n.col
 
 /***/ }),
 /* 57 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [],
+
+    computed: {
+        formData: function formData() {
+            return {
+                nombre: this.nombre,
+                descripcion: this.descripcion,
+                costo: this.costo
+            };
+        }
+    },
+
+    watch: {},
+
+    data: function data() {
+        return {
+            nombre: null,
+            descripcion: null,
+            costo: null
+        };
+    },
+
+
+    methods: {
+        sendDish: function sendDish() {
+            axios.post('/api/comida', this.formData).then(function (res) {
+                alert("Comida registrada");
+            }).catch(function (err) {
+                alert(err);
+            });
+            this.nombre = '', this.descripcion = '', this.costo = '';
+        }
+    }
+
+});
+
+/***/ }),
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -51204,19 +51278,19 @@ if (false) {
 }
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(59)
+  __webpack_require__(60)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(67)
+var __vue_script__ = __webpack_require__(62)
 /* template */
-var __vue_template__ = __webpack_require__(61)
+var __vue_template__ = __webpack_require__(63)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -51255,13 +51329,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(60);
+var content = __webpack_require__(61);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -51281,7 +51355,7 @@ if(false) {
 }
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -51295,7 +51369,113 @@ exports.push([module.i, "\nform[data-v-86078e00]{\n\twidth: 80vw;\n}\n", ""]);
 
 
 /***/ }),
-/* 61 */
+/* 62 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [],
+
+    computed: {
+        formData: function formData() {
+            return {
+                nomina: this.nomina,
+                nombre: this.nombre,
+                ap_paterno: this.ap_paterno,
+                ap_materno: this.ap_materno,
+                direccion: this.direccion,
+                id_departamento: this.departamento,
+                tipo_empleado: this.tipo_empleado,
+                sueldo: this.sueldo
+            };
+        }
+    },
+
+    watch: {},
+
+    data: function data() {
+        return {
+            nomina: null,
+            nombre: null,
+            ap_paterno: null,
+            ap_materno: null,
+            direccion: null,
+            id_departamento: null,
+            tipo_empleado: null,
+            sueldo: null
+        };
+    },
+
+
+    methods: {
+        sendEmployed: function sendEmployed() {
+            axios.post('/api/empleado', this.formData).then(function (res) {
+                alert("Empleado registrado");
+            }).catch(function (err) {
+                alert(err);
+            });
+            this.nomina = '', this.nombre = '', this.ap_paterno = '', this.ap_materno = '', this.direccion = '', this.id_departamento = '', this.tipo_empleado = '', this.sueldo = '';
+        }
+    }
+
+});
+
+/***/ }),
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -51567,197 +51747,10 @@ if (false) {
 }
 
 /***/ }),
-/* 62 */
+/* 64 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [],
-
-    computed: {
-        formData: function formData() {
-            return {
-                nombre: this.nombre,
-                descripcion: this.descripcion,
-                costo: this.costo
-            };
-        }
-    },
-
-    watch: {},
-
-    data: function data() {
-        return {
-            nombre: null,
-            descripcion: null,
-            costo: null
-        };
-    },
-
-
-    methods: {
-        sendDish: function sendDish() {
-            axios.post('/api/comida', this.formData).then(function (res) {
-                alert("Comida registrada");
-            }).catch(function (err) {
-                alert(err);
-            });
-            this.nombre = '', this.descripcion = '', this.costo = '';
-        }
-    }
-
-});
-
-/***/ }),
-/* 67 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [],
-
-    computed: {
-        formData: function formData() {
-            return {
-                nomina: this.nomina,
-                nombre: this.nombre,
-                ap_paterno: this.ap_paterno,
-                ap_materno: this.ap_materno,
-                direccion: this.direccion,
-                id_departamento: this.id_departamento,
-                tipo_empleado: this.tipo_empleado,
-                sueldo: this.sueldo
-            };
-        }
-    },
-
-    watch: {},
-
-    data: function data() {
-        return {
-            nomina: null,
-            nombre: null,
-            ap_paterno: null,
-            ap_materno: null,
-            direccion: null,
-            id_departamento: null,
-            tipo_empleado: null,
-            sueldo: null
-        };
-    },
-
-
-    methods: {
-        sendEmployed: function sendEmployed() {
-            axios.post('/api/empleado', this.formData).then(function (res) {
-                alert("Empleado registrado");
-            }).catch(function (err) {
-                alert(err);
-            });
-            this.nomina = '', this.nombre = '', this.ap_paterno = '', this.ap_materno = '', this.direccion = '', this.id_departamento = '', this.tipo_empleado = '', this.sueldo = '';
-        }
-    }
-
-});
 
 /***/ })
 /******/ ]);

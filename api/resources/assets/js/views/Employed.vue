@@ -62,7 +62,7 @@
     				ap_paterno: this.ap_paterno,
     				ap_materno: this.ap_materno,
     				direccion: this.direccion,
-    				id_departamento: this.id_departamento,
+    				id_departamento: this.departamento,
     				tipo_empleado: this.tipo_empleado,
     				sueldo: this.sueldo
     			}
