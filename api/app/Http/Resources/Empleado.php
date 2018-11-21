@@ -22,7 +22,8 @@ class Empleado extends JsonResource
             'direccion' => $this->direccion,
             'departamento' => new DepartamentoResource($this->departamento),
             'empleado' => $this->tipo_empleado,
-            'sueldo' => $this->sueldo
+            'sueldo' => $this->sueldo,
+            'nombre' => $this->nombre
         ];
     }
 }
