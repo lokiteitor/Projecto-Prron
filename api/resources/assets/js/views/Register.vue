@@ -38,6 +38,49 @@
 		</form>
 	</div>
 </template>
+
+<script type="text/javascript">
+    export default {
+    	mixins:[],
+
+    	computed:{
+    		formData(){
+    			return{
+    				nomina: this.nomina
+    			}
+    		}
+    	},
+
+    	data(){
+    		return{
+    			employed: [],
+    			nomina: '998921'
+    		}
+    	},
+
+        methods:{
+        	getEmployed(){
+        		 axios.get('/api/empleado/${this.nomina}/registros').then(res => {
+                    this.employed = res.data
+                }).catch(err => {
+                    console.log(err)
+                })
+        	}
+        },
+
+        created(){
+        	this.getEmployed()
+        },
+
+        mounted(){
+        	this.getEmployed()
+        }
+
+    }
+
+
+</script>
+
 <style type="text/css" scoped>
 	.row{
 		padding-top: 20px;
