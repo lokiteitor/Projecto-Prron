@@ -28,11 +28,23 @@ class RegistroController extends Controller
      */
     public function store(Request $request)
     {
-        // TODO : automatizar el registro de la fecha
+        // fecha de hoy
+        $fecha = DateTime();
+
+        $rules = [
+            'comida' => 'required|exists:comida,id',
+            'nomina' => 'required|exists:empleado,nomina',
+        ];
+
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 422);
+        }        
         $registro = Registro::create([
             'id_comida' => $request->comida,
             'nomina' => $request->nomina,
-            'fecha' => $request->fecha
+            'fecha' => $fecha
         ]);
         return new RegistroResource($registro);
     }
@@ -79,7 +91,8 @@ class RegistroController extends Controller
 
     public function getEmpleadoRegistros(Request $request,$idEmpleado)
     {
-        $registros = Empleado::findOrFail($idEmpleado)->registros;
+        $registros = Empleado::findOrFail($idEmpleado)->registros()
+        ->get()->paginate(30);
         return new RegistroCollection($registros);
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Empleado as EmpleadoResource;
 use App\Empleado;
 use App\Departamento;
+use Illuminate\Validation\Rule;
+
 
 class EmpleadoController extends Controller
 {
@@ -29,6 +31,22 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         // TODO : revisar relacion departamento
+        $rules = [
+            'nomina' => 'required|integer',
+            'ap_paterno' => 'required',
+            'ap_materno' => 'required',
+            'direccion' => 'required',
+            'tipo' => ['required',Rule::in(['operario','confianza'])],
+            'sueldo' => 'required|regex:/[0-9]*-[0-9]*',
+            'id_departamento' => 'required|exists:departamento,id'
+        ];
+
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 422);
+        }
+                   
         $empleado = Empleado::create([
             'nomina' => $request->nomina,
             'nombre' => $request->nombre,

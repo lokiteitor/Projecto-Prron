@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\Departamento as DepartamentoResource;
 use App\Departamento;
+use App\Validator;
 
 class DepartamentoController extends Controller
 {
@@ -28,6 +29,18 @@ class DepartamentoController extends Controller
     public function store(Request $request)
     {
         //
+        $rules = [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+        ];
+
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 422);
+        }
+
+
         $departamento = Departamento::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion
@@ -59,6 +72,17 @@ class DepartamentoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $rules = [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+        ];
+
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 422);
+        }
+                
         $departamento = Departamento::findOrFail($id);
         $departamento->nombre = $request->nombre;
         $departamento->descripcion = $request->descripcion;
