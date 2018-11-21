@@ -7,6 +7,7 @@ use App\Http\Resources\Registro as RegistroResource;
 use App\Registro_comida as Registro;
 use App\Empleado;
 use App\Http\Resources\RegistroCollection;
+use Validator;
 
 class RegistroController extends Controller
 {
@@ -29,11 +30,11 @@ class RegistroController extends Controller
     public function store(Request $request)
     {
         // fecha de hoy
-        $fecha = DateTime();
+        $fecha = date('Y-n-d');
 
         $rules = [
-            'comida' => 'required|exists:comida,id',
-            'nomina' => 'required|exists:empleado,nomina',
+            'comida' => 'required|integer|exists:comidas,id',
+            'nomina' => 'required|integer|exists:empleados,nomina',
         ];
 
         $validador = Validator::make($request->all(),$rules);
@@ -43,8 +44,7 @@ class RegistroController extends Controller
         }        
         $registro = Registro::create([
             'id_comida' => $request->comida,
-            'nomina' => $request->nomina,
-            'fecha' => $fecha
+            'nomina' => $request->nomina
         ]);
         return new RegistroResource($registro);
     }
@@ -91,8 +91,7 @@ class RegistroController extends Controller
 
     public function getEmpleadoRegistros(Request $request,$idEmpleado)
     {
-        $registros = Empleado::findOrFail($idEmpleado)->registros()
-        ->get()->paginate(30);
+        $registros = Empleado::findOrFail($idEmpleado)->registros()->paginate(30);
         return new RegistroCollection($registros);
     }
 }
