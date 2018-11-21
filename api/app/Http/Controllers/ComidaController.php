@@ -32,7 +32,7 @@ class ComidaController extends Controller
         $rules = [
             'nombre' => 'required',
             'descripcion' => 'required',
-            'costo' => 'required|regex:/[0-9]*.[0-9]*/'
+            'costo' => 'required|numeric'
         ];
 
         $validador = Validator::make($request->all(),$rules);
@@ -74,9 +74,9 @@ class ComidaController extends Controller
     {
         //
         $rules = [
-            'nombre' => 'required|regex:/[a-zA-Z ]*/',
+            'nombre' => 'required',
             'descripcion' => 'required',
-            'costo' => 'required|regex:/[0-9]*.[0-9]*/'
+            'costo' => 'required|numeric'
         ];
 
         $validador = Validator::make($request->all(),$rules);
