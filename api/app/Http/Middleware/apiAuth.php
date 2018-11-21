@@ -20,18 +20,18 @@ class apiAuth
             'api_token' => 'required'
         ]);
         if($validador->fails()){
-            return response()->json(['mensaje'=>'No autorizado'],204);
+            return response()->json(['mensaje'=>'No autorizado'],401);
         }
 
         if($request->user == 'administrador'){
             if(!($request->api_token == env('API_TOKEN_ADM'))){
-                return response()->json(['mensaje'=>'No autorizado'],204);
+                return response()->json(['mensaje'=>'No autorizado'],401);
             }
             return $next($request);
         }
         else if($request->user == 'empleado'){
             if(!($request->api_token == env('API_TOKEN_EMP'))){
-                return response()->json(['mensaje'=>'No autorizado'],204);
+                return response()->json(['mensaje'=>'No autorizado'],401);
             }
         }
         return $next($request);
