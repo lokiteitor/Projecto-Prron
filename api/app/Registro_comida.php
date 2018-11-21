@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Registro_comida extends Model
 {
     //
+    // protected $guarded = [];
     protected $fillable = ['id_comida','nomina','fecha'];
     public function comida()
     {

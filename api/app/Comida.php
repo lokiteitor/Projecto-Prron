@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comida extends Model
 {
     //
+    // protected $guarded = [];
     protected $fillable = ['nombre','descripcion','costo'];
     public function registros()
     {
