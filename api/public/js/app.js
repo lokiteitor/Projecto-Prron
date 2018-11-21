@@ -50707,6 +50707,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [],
@@ -50715,6 +50721,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         formData: function formData() {
             return {
                 nomina: this.nomina,
+                comida: this.comida,
                 isFinded: this.isFinded
             };
         }
@@ -50733,6 +50740,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             employed: [],
             description: [],
             nomina: '',
+            comida: '',
             isFinded: false
         };
     },
@@ -50759,6 +50767,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         changeState: function changeState() {
             this.isFinded = !this.isFinded;
+        },
+        setComida: function setComida() {
+            axios({
+                method: 'post',
+                url: '/api/registro',
+                responseType: 'json',
+                data: {
+                    comida: this.comida,
+                    nomina: this.nomina
+                }
+            }).then(function (res) {
+                alert("Comida registrado");
+            }).catch(function (err) {
+                alert(err);
+            });
         }
     }
 
@@ -50796,6 +50819,33 @@ var render = function() {
                   return
                 }
                 _vm.nomina = $event.target.value
+              }
+            }
+          }),
+          _c("br")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-md-3" }, [
+          _c("label", [_vm._v("Comida")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.comida,
+                expression: "comida"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.comida },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.comida = $event.target.value
               }
             }
           }),
@@ -50944,12 +50994,21 @@ var render = function() {
             ])
           ])
         ]
-      ),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-primary" }, [
-        _vm._v("Solicitar Pedido")
-      ])
-    ])
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary",
+        on: {
+          click: function($event) {
+            _vm.setComida()
+          }
+        }
+      },
+      [_vm._v("Solicitar Pedido")]
+    )
   ])
 }
 var staticRenderFns = []
@@ -51426,6 +51485,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [],
@@ -51463,12 +51523,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         sendEmployed: function sendEmployed() {
-            axios.post('/api/empleado', this.formData).then(function (res) {
+            axios({
+                method: 'post',
+                url: '/api/empleado',
+                responseType: 'json',
+                data: {
+                    nomina: this.nomina,
+                    nombre: this.nombre,
+                    ap_paterno: this.ap_paterno,
+                    ap_materno: this.ap_materno,
+                    direccion: this.direccion,
+                    departamento: this.id_departamento,
+                    tipo: this.tipo_empleado,
+                    sueldo: this.sueldo
+                }
+            }).then(function (res) {
                 alert("Empleado registrado");
             }).catch(function (err) {
                 alert(err);
             });
+
             this.nomina = '', this.nombre = '', this.ap_paterno = '', this.ap_materno = '', this.direccion = '', this.id_departamento = '', this.tipo_empleado = '', this.sueldo = '';
+
+            return false;
         }
     }
 
@@ -51719,21 +51796,21 @@ var render = function() {
             }
           })
         ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          on: {
-            click: function($event) {
-              _vm.sendEmployed()
-            }
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary",
+        on: {
+          click: function($event) {
+            _vm.sendEmployed()
           }
-        },
-        [_vm._v("Registrar Empleado")]
-      )
-    ])
+        }
+      },
+      [_vm._v("Registrar Empleado")]
+    )
   ])
 }
 var staticRenderFns = []

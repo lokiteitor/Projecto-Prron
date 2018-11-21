@@ -45,8 +45,9 @@
 		      <input type="text" class="form-control" v-model="sueldo">
 		   </div>
 		  </div>
-		  <button class="btn btn-primary" @click="sendEmployed()">Registrar Empleado</button>
+		  
 		</form>
+		<button class="btn btn-primary" @click="sendEmployed()">Registrar Empleado</button>
 	</div>
 </template>
 
@@ -87,12 +88,28 @@
     	},
 
         methods:{
-        	sendEmployed() {
-                axios.post(`/api/empleado`, this.formData).then(res =>{
+        	sendEmployed() {				
+				axios({
+				method: 'post',
+				url: '/api/empleado',
+				responseType: 'json',
+				data: {
+    				nomina: this.nomina,
+    				nombre: this.nombre,
+    				ap_paterno: this.ap_paterno,
+    				ap_materno: this.ap_materno,
+    				direccion: this.direccion,
+    				departamento: this.id_departamento,
+    				tipo: this.tipo_empleado,
+    				sueldo: this.sueldo					
+				}
+				}).then(res =>{
                     alert("Empleado registrado")
                 }).catch(err =>{
                     alert(err)
-                })
+				})		
+
+
                 this.nomina = '',
 				this.nombre = '',
 				this.ap_paterno = '',
@@ -101,6 +118,8 @@
 				this.id_departamento = '',
 				this.tipo_empleado = '',
 				this.sueldo = ''
+
+				return false;
             }
         }
 

@@ -6,6 +6,11 @@
 		    	<label>Nomina</label>
 		    	<input type="text" class="form-control" v-model="nomina"><br>
 		    </div>
+		  	<div class="form-group col-md-3">
+		    	<label>Comida</label>
+		    	<input type="text" class="form-control" v-model="comida"><br>
+		    </div>			
+
 		   </div>
 		<fieldset disabled class="watch" v-bind:class="{active: isFinded}">
 		  <div class="form-row">
@@ -25,7 +30,7 @@
 		  <div class="form-row">  
 		   <div class="form-group col-md-6">
 		      <label>Departamento</label>
-		      <input class="form-control" v-model="description.nombre"></input>
+		      <input class="form-control" v-model="description.nombre" >
 		   </div>
 		   <div class="form-group col-md-2">
 		   	<label>Tipo de empleado</label>
@@ -33,8 +38,9 @@
 		   </div>
 		  </div>
 		</fieldset>
-		  <button class="btn btn-primary">Solicitar Pedido</button>
+		  
 		</form>
+		<button class="btn btn-primary" @click="setComida()">Solicitar Pedido</button>
 	</div>
 </template>
 
@@ -45,7 +51,8 @@
     	computed:{
     		formData(){
     			return{
-					nomina: this.nomina,					
+					nomina: this.nomina,		
+					comida: this.comida,			
     				isFinded: this.isFinded
     			}
     		}
@@ -64,6 +71,7 @@
     			employed: [],
     			description: [],
 				nomina: '',
+				comida: '',
     			isFinded: false
     		}
     	},
@@ -85,6 +93,21 @@
         	},
         	changeState(){
         		this.isFinded =! this.isFinded
+			},
+			setComida(){
+				axios({
+				method: 'post',
+				url: '/api/registro',
+				responseType: 'json',
+				data: {
+					comida: this.comida,
+					nomina: this.nomina
+				}
+				}).then(res =>{
+                    alert("Comida registrado")
+                }).catch(err =>{
+                    alert(err)
+				})
 			}
         }
 
