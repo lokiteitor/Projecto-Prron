@@ -19,6 +19,7 @@ class RegistroController extends Controller
     public function index()
     {
         // TODO : no mostrar todos los registros        
+        
     }
 
     /**
@@ -44,7 +45,8 @@ class RegistroController extends Controller
         }        
         $registro = Registro::create([
             'id_comida' => $request->comida,
-            'nomina' => $request->nomina
+            'nomina' => $request->nomina,
+            'fecha' => $request->fecha
         ]);
         return new RegistroResource($registro);
     }

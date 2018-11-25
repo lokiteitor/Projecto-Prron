@@ -18,7 +18,8 @@ class Comida extends JsonResource
             'id' => $this->id,
             'nombre' => $this->nombre,
             'descripcion' => $this->descripcion,
-            'costo' => $this->costo
+            'costo' => $this->costo,
+            'fecha' => $this->fecha
         ];
     }
 }
