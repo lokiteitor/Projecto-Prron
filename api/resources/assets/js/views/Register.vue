@@ -6,53 +6,45 @@
 		    	<label>Nomina</label>
 		    	<input type="text" class="form-control" v-model="nomina"><br>
 		    </div>
-<<<<<<< HEAD
 		    <!-- <div class="form-group col-md-3">
 		    	<label>Platillo del día</label>
 		    	<input type="text" class="form-control" readonly v-model="food.nombre" id="DATE"><br>
 		    </div> -->
-=======
 		  	<div class="form-group col-md-3">
 		    	<label>Comida</label>
 		    	<input type="text" class="form-control" v-model="comida"><br>
-		    </div>			
-
->>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
+		    </div>		
 		   </div>
 		<fieldset disabled class="watch" v-bind:class="{active: isFinded}">
 		  <div class="form-row">
 		    <div class="form-group col-md-6">
 		    	<label>Nombre(s)</label>
-		    	<input type="text" class="form-control" v-model="employed.nombre">
+		    	<input type="text" class="form-control" v-model="employed.nombre" placeholder="No registrado">
 		    </div>
 		    <div class="form-group col-md-6">
 		    	<label>Apellido Paterno</label>
-		    	<input type="text" class="form-control" v-model="employed.ap_materno">
+		    	<input type="text" class="form-control" v-model="employed.ap_materno" placeholder="No registrado">
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label>Dirección</label>
-		    <input type="text" class="form-control" v-model="employed.direccion">
+		    <input type="text" class="form-control" v-model="employed.direccion" placeholder="No registrado">
 		  </div>	
 		  <div class="form-row">  
 		   <div class="form-group col-md-6">
 		      <label>Departamento</label>
-		      <input class="form-control" v-model="description.nombre" >
+		      <input class="form-control" v-model="description.nombre" placeholder="No registrado">
 		   </div>
 		   <div class="form-group col-md-2">
 		   	<label>Tipo de empleado</label>
-		    <input type="text" class="form-control" v-model="employed.empleado">
+		    <input type="text" class="form-control" v-model="employed.empleado" placeholder="No registrado">
 		   </div>
 		  </div>
 		</fieldset>
-<<<<<<< HEAD
 		</form>
-		<button class="btn btn-primary" v-bind:class="{active: isFinded}">Solicitar Pedido</button>
-=======
+		<button class="btn btn-primary" v-bind:class="{active: isFinded}" @click="setComida()">Solicitar Pedido</button>
 		  
 		</form>
-		<button class="btn btn-primary" @click="setComida()">Solicitar Pedido</button>
->>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 	</div>
 </template>
 
@@ -63,13 +55,10 @@
     	computed:{
     		formData(){
     			return{
-<<<<<<< HEAD
     				nomina: this.nomina,
     				// id_comida: this.id_comida,
-=======
 					nomina: this.nomina,		
 					comida: this.comida,			
->>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
     				isFinded: this.isFinded
     			}
     		}
@@ -77,14 +66,15 @@
 
     	watch:{
     		nomina:function(newValue){
-    			this.getEmployed()
-<<<<<<< HEAD
-    			this.getDescription()
-    			this.changeState()
-=======
-				this.getDescription()
+    			if(this.nomina.length == 6){
+    				this.getEmployed()
+	    			this.getDescription()
+	    			this.isFinded = false
+    			}
+    			else{
+    				this.isFinded = true
+    			}
     			//this.changeState()
->>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
     		},
     	},
 
@@ -92,17 +82,11 @@
     		return{
     			employed: [],
     			description: [],
-<<<<<<< HEAD
     			nomina: '',
     			// food: [],
     			isFinded: true,
     			// today: '',
     			// id_comida: '1'
-=======
-				nomina: '',
-				comida: '',
-    			isFinded: false
->>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
     		}
     	},
 
@@ -132,24 +116,15 @@
         	// 	this.today = new Date().toJSON().slice(0,10)
         	// 	document.getElementById("DATE").value = this.today
         	// },
-        	changeState(){
-<<<<<<< HEAD
-        		if(this.nomina == ''){
-        			this.isFinded = true
-        		}
-        		else{
-        			this.isFinded = false
-        		}
-        	}
-        },
-
-        mounted(){
-        	// this.getDish()
-        	// this.getDate()
-=======
-        		this.isFinded =! this.isFinded
-			},
-			setComida(){
+        	// changeState(){
+        	// 	if(this.nomina == ''){
+        	// 		this.isFinded = true
+        	// 	}
+        	// 	else{
+        	// 		this.isFinded = false
+        	// 	}
+        	// },
+        	setComida(){
 				axios({
 				method: 'post',
 				url: '/api/registro',
@@ -159,12 +134,20 @@
 					nomina: this.nomina
 				}
 				}).then(res =>{
-                    alert("Comida registrado")
+                    swal('Comida registrada')
                 }).catch(err =>{
-                    alert(err)
+                    swal({type: 'error',
+  						title: 'Oops...',
+  						text: '¡Hay algun error en el formulario,revisa los datos!'
+  					})
 				})
 			}
->>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
+        },
+
+        mounted(){
+        	// this.getDish()
+        	// this.getDate()
+			
         }
 
     }

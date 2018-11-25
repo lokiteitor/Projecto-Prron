@@ -63,11 +63,10 @@
                 axios.post(`/api/comida`, this.formData).then(res =>{
                     swal('Comida registrada')       
                 }).catch(err =>{
-                    swal({
-					  type: 'error',
-					  title: 'Oops...',
-					  text: 'Something went wrong!',
-					})
+                    swal({type: 'error',
+  						title: 'Oops...',
+  						text: '¡Hay algun error en el formulario,revisa los datos!'
+  					})
                 })
                 this.nombre = '',
                 this.descripcion = '',

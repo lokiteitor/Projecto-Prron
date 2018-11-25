@@ -34,8 +34,8 @@
 		   </div>
 		   <div class="form-group col-md-2">
 		   	<label>Tipo de empleado</label>
-		      <select class="custom-select" v-model="tipo_empleado">
-				  <option value="confianza">Confianza</option>
+		      <select class="custom-select" v-model="tipo_empleado" required>
+				  <option value="confianza" selected>Confianza</option>
 				  <option value="operario">Operario</option>
 			  </select>
 		   </div>
@@ -45,10 +45,6 @@
 		      <input type="text" class="form-control" v-model="sueldo">
 		   </div>
 		  </div>
-<<<<<<< HEAD
-=======
-		  
->>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 		</form>
 		<button class="btn btn-primary" @click="sendEmployed()">Registrar Empleado</button>
 	</div>
@@ -107,9 +103,12 @@
     				sueldo: this.sueldo					
 				}
 				}).then(res =>{
-                    alert("Empleado registrado")
+                    swal('Empleado registrado')
                 }).catch(err =>{
-                    alert(err)
+                    swal({type: 'error',
+  						title: 'Oops...',
+  						text: '¡Hay algun error en el formulario,revisa los datos!'
+  					})
 				})		
 
 
