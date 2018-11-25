@@ -100,7 +100,8 @@ class DepartamentoController extends Controller
     {
         //
         $departamento = Departamento::findOrFail($id);
-        $departamento->delete();
+        $departamento->delete();        
         return response()->json(null,204);
+        
     }
 }

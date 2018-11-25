@@ -21,8 +21,7 @@ class Registro extends JsonResource
         return [
             'id' => $this->id,
             'id_comida' => new ComidaResource(Comida::find($this->id_comida)),
-            'nomina' => $this->nomina,
-            'created_at' => $this->created_at
+            'nomina' => $this->nomina
         ];
     }
 }
