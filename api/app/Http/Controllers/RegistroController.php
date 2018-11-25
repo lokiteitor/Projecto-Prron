@@ -94,4 +94,27 @@ class RegistroController extends Controller
         $registros = Empleado::findOrFail($idEmpleado)->registros()->paginate(30);
         return new RegistroCollection($registros);
     }
+
+    // api para obtener registros de fecha a fecha
+    public function getRegistrosFecha(Request $request,$idEmpleado)
+    {
+        $rules = [
+            'finicio' => 'required|date',
+            'ffin' => 'required|date|after:'.$request->finicio
+        ];
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 422);
+        } 
+        
+        // realizar las consultas
+        $registros = Empleado::findOrFail($idEmpleado)->registros()
+        ->whereBetween('created_at',[
+            $request->finicio,
+            $request->ffin
+        ])->paginate(15);
+
+        return new RegistroCollection($registros);
+    }
 }

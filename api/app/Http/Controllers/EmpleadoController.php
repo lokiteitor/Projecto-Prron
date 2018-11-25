@@ -31,6 +31,7 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
+        $res = $request->json()->all();
         // TODO : revisar relacion departamento
         $rules = [
             'nomina' => 'required|integer|unique:empleados,nomina',
@@ -40,24 +41,24 @@ class EmpleadoController extends Controller
             'direccion' => 'required',
             'tipo' => ['required',Rule::in(['operario','confianza'])],
             'sueldo' => 'required|numeric',
-            'departamento' => 'required|exists:departamentos,id'
+            'departamento' => 'exists:departamentos,id'
         ];
 
-        $validador = Validator::make($request->all(),$rules);
+        $validador = Validator::make($res,$rules);
         if($validador->fails()){
             $errors = $validador->errors();
             return response()->json($errors, 422);
         }
                    
         $empleado = Empleado::create([
-            'nomina' => $request->nomina,
-            'nombre' => $request->nombre,
-            'ap_paterno' => $request->ap_paterno,
-            'ap_materno' => $request->ap_materno,
-            'direccion' => $request->direccion,
-            'tipo_empleado' => $request->tipo,
-            'sueldo' => $request->sueldo,
-            'id_departamento' => $request->departamento
+            'nomina' => $res['nomina'],
+            'nombre' => $res['nombre'],
+            'ap_paterno' => $res['ap_paterno'],
+            'ap_materno' => $res['ap_materno'],
+            'direccion' => $res['direccion'],
+            'tipo_empleado' => $res['tipo'],
+            'sueldo' => $res['sueldo'],
+            'id_departamento' => $res['departamento']
         ]);
         return new EmpleadoResource($empleado);
     }
@@ -90,7 +91,7 @@ class EmpleadoController extends Controller
             'direccion' => 'required',
             'tipo' => ['required',Rule::in(['operario','confianza'])],
             'sueldo' => 'required|numeric',
-            'departamento' => 'required|exists:departamentos,id'
+            'departamento' => 'exists:departamentos,id'
         ];
 
         $validador = Validator::make($request->all(),$rules);

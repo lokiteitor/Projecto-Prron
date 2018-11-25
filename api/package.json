@@ -12,11 +12,20 @@
     "dependencies": {
         "axios": "^0.18.0",
         "bootstrap": "^4.0.0",
+        "fullcalendar": "^3.9.0",
         "jquery": "^3.2",
         "laravel-mix": "^2.0",
         "popper.js": "^1.14.5",
+<<<<<<< HEAD
         "sweetalert2": "^7.29.1",
         "vue": "^2.5.17",
         "vue-router": "^3.0.1"
+=======
+        "vue": "^2.5.17",
+        "vue-router": "^3.0.1"
+    },
+    "devDependencies": {
+        "cross-env": "^5.2.0"
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
     }
 }

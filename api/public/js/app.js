@@ -14300,7 +14300,11 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
+<<<<<<< HEAD
 module.exports = __webpack_require__(65);
+=======
+module.exports = __webpack_require__(64);
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 
 
 /***/ }),
@@ -14318,7 +14322,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_Register___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__views_Register__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_FoodDescription__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_FoodDescription___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__views_FoodDescription__);
+<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_Employed__ = __webpack_require__(60);
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_Employed__ = __webpack_require__(59);
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_Employed___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__views_Employed__);
 
 /**
@@ -53381,6 +53389,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+<<<<<<< HEAD
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [],
@@ -53435,6 +53444,81 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(err);
       });
     },
+=======
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [],
+
+    computed: {
+        formData: function formData() {
+            return {
+                nomina: this.nomina,
+                comida: this.comida,
+                isFinded: this.isFinded
+            };
+        }
+    },
+
+    watch: {
+        nomina: function nomina(newValue) {
+            this.getEmployed();
+            this.getDescription();
+            //this.changeState()
+        }
+    },
+
+    data: function data() {
+        return {
+            employed: [],
+            description: [],
+            nomina: '',
+            comida: '',
+            isFinded: false
+        };
+    },
+
+
+    methods: {
+        getEmployed: function getEmployed() {
+            var _this = this;
+
+            axios.get('/api/empleado/' + this.nomina).then(function (res) {
+                _this.employed = res.data.data;
+            }).catch(function (err) {
+                console.log(err);
+            });
+        },
+        getDescription: function getDescription() {
+            var _this2 = this;
+
+            axios.get('/api/empleado/' + this.nomina).then(function (res) {
+                _this2.description = res.data.data.departamento;
+            }).catch(function (err) {
+                console.log(err);
+            });
+        },
+        changeState: function changeState() {
+            this.isFinded = !this.isFinded;
+        },
+        setComida: function setComida() {
+            axios({
+                method: 'post',
+                url: '/api/registro',
+                responseType: 'json',
+                data: {
+                    comida: this.comida,
+                    nomina: this.nomina
+                }
+            }).then(function (res) {
+                alert("Comida registrado");
+            }).catch(function (err) {
+                alert(err);
+            });
+        }
+    }
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 
     // getDish(){
     // 	axios.get(`/api/comida/${this.id_comida}`).then(res => {
@@ -53494,6 +53578,33 @@ var render = function() {
                   return
                 }
                 _vm.nomina = $event.target.value
+              }
+            }
+          }),
+          _c("br")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-md-3" }, [
+          _c("label", [_vm._v("Comida")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.comida,
+                expression: "comida"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.comida },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.comida = $event.target.value
               }
             }
           }),
@@ -53593,27 +53704,23 @@ var render = function() {
             _c("div", { staticClass: "form-group col-md-6" }, [
               _c("label", [_vm._v("Departamento")]),
               _vm._v(" "),
-              _c("textarea", {
+              _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.description.descripcion,
-                    expression: "description.descripcion"
+                    value: _vm.description.nombre,
+                    expression: "description.nombre"
                   }
                 ],
                 staticClass: "form-control",
-                domProps: { value: _vm.description.descripcion },
+                domProps: { value: _vm.description.nombre },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(
-                      _vm.description,
-                      "descripcion",
-                      $event.target.value
-                    )
+                    _vm.$set(_vm.description, "nombre", $event.target.value)
                   }
                 }
               })
@@ -53651,7 +53758,18 @@ var render = function() {
     _vm._v(" "),
     _c(
       "button",
+<<<<<<< HEAD
       { staticClass: "btn btn-primary", class: { active: _vm.isFinded } },
+=======
+      {
+        staticClass: "btn btn-primary",
+        on: {
+          click: function($event) {
+            _vm.setComida()
+          }
+        }
+      },
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
       [_vm._v("Solicitar Pedido")]
     )
   ])
@@ -53677,9 +53795,15 @@ function injectStyle (ssrContext) {
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
+<<<<<<< HEAD
 var __vue_script__ = __webpack_require__(58)
 /* template */
 var __vue_template__ = __webpack_require__(59)
+=======
+var __vue_script__ = __webpack_require__(57)
+/* template */
+var __vue_template__ = __webpack_require__(58)
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -53758,7 +53882,11 @@ exports.push([module.i, "\n.row[data-v-1e3e55bb]{\n\tpadding-top: 20px;\n}\n.col
 
 
 /***/ }),
+<<<<<<< HEAD
 /* 58 */
+=======
+/* 57 */
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53825,6 +53953,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         sendDish: function sendDish() {
             axios.post('/api/comida', this.formData).then(function (res) {
+<<<<<<< HEAD
                 swal('Comida registrada');
             }).catch(function (err) {
                 swal({
@@ -53832,6 +53961,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     title: 'Oops...',
                     text: 'Something went wrong!'
                 });
+=======
+                alert("Comida registrada");
+            }).catch(function (err) {
+                alert(err);
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
             });
             this.nombre = '', this.descripcion = '', this.costo = '';
         }
@@ -53840,7 +53974,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
+<<<<<<< HEAD
 /* 59 */
+=======
+/* 58 */
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -53986,12 +54124,17 @@ if (false) {
 }
 
 /***/ }),
+<<<<<<< HEAD
 /* 60 */
+=======
+/* 59 */
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
+<<<<<<< HEAD
   __webpack_require__(61)
 }
 var normalizeComponent = __webpack_require__(4)
@@ -53999,6 +54142,15 @@ var normalizeComponent = __webpack_require__(4)
 var __vue_script__ = __webpack_require__(63)
 /* template */
 var __vue_template__ = __webpack_require__(64)
+=======
+  __webpack_require__(60)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(62)
+/* template */
+var __vue_template__ = __webpack_require__(63)
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -54037,13 +54189,21 @@ module.exports = Component.exports
 
 
 /***/ }),
+<<<<<<< HEAD
 /* 61 */
+=======
+/* 60 */
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
+<<<<<<< HEAD
 var content = __webpack_require__(62);
+=======
+var content = __webpack_require__(61);
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -54063,7 +54223,11 @@ if(false) {
 }
 
 /***/ }),
+<<<<<<< HEAD
 /* 62 */
+=======
+/* 61 */
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -54077,7 +54241,11 @@ exports.push([module.i, "\nform[data-v-86078e00]{\n\twidth: 80vw;\n}\n", ""]);
 
 
 /***/ }),
+<<<<<<< HEAD
 /* 63 */
+=======
+/* 62 */
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54134,6 +54302,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+<<<<<<< HEAD
+=======
+//
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [],
@@ -54146,7 +54318,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 ap_paterno: this.ap_paterno,
                 ap_materno: this.ap_materno,
                 direccion: this.direccion,
+<<<<<<< HEAD
                 id_departamento: this.id_departamento,
+=======
+                id_departamento: this.departamento,
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
                 tipo_empleado: this.tipo_empleado,
                 sueldo: this.sueldo
             };
@@ -54171,19 +54347,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         sendEmployed: function sendEmployed() {
+<<<<<<< HEAD
             axios.post('/api/empleado', this.formData).then(function (res) {
+=======
+            axios({
+                method: 'post',
+                url: '/api/empleado',
+                responseType: 'json',
+                data: {
+                    nomina: this.nomina,
+                    nombre: this.nombre,
+                    ap_paterno: this.ap_paterno,
+                    ap_materno: this.ap_materno,
+                    direccion: this.direccion,
+                    departamento: this.id_departamento,
+                    tipo: this.tipo_empleado,
+                    sueldo: this.sueldo
+                }
+            }).then(function (res) {
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
                 alert("Empleado registrado");
             }).catch(function (err) {
                 alert(err);
             });
+<<<<<<< HEAD
             this.nomina = '', this.nombre = '', this.ap_paterno = '', this.ap_materno = '', this.direccion = '', this.id_departamento = '', this.tipo_empleado = '', this.sueldo = '';
+=======
+
+            this.nomina = '', this.nombre = '', this.ap_paterno = '', this.ap_materno = '', this.direccion = '', this.id_departamento = '', this.tipo_empleado = '', this.sueldo = '';
+
+            return false;
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
         }
     }
 
 });
 
 /***/ }),
+<<<<<<< HEAD
 /* 64 */
+=======
+/* 63 */
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -54455,7 +54660,11 @@ if (false) {
 }
 
 /***/ }),
+<<<<<<< HEAD
 /* 65 */
+=======
+/* 64 */
+>>>>>>> f59bae723796ca10fd6a5be9facf17c27e791d10
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

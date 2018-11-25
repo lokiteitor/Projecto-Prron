@@ -23,3 +23,4 @@ Route::resource('empleado', 'EmpleadoController')->except(['create','edit']);
 Route::resource('registro', 'RegistroController')->only(['store','destroy']);
 
 Route::get('empleado/{id}/registros','RegistroController@getEmpleadoRegistros');
+Route::get('empleado/{id}/reporte','RegistroController@getRegistrosFecha');
