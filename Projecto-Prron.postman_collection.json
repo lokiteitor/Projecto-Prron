@@ -458,7 +458,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "comedor.com/api/empleado/2117?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
+							"raw": "comedor.com/api/empleado/218578?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==",
 							"host": [
 								"comedor",
 								"com"
@@ -466,7 +466,7 @@
 							"path": [
 								"api",
 								"empleado",
-								"2117"
+								"218578"
 							],
 							"query": [
 								{
@@ -757,6 +757,49 @@
 								{
 									"key": "api_token",
 									"value": "YXBpX3Bhc3N3b3JkCg=="
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comedor.com/api/empleado/2117/reporte?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==&finicio=2017-01-01&ffin=2018-11-20",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "comedor.com/api/empleado/214120/reporte?user=administrador&api_token=YXBpX3Bhc3N3b3JkCg==&finicio=2016-01-01&ffin=2018-12-31",
+							"host": [
+								"comedor",
+								"com"
+							],
+							"path": [
+								"api",
+								"empleado",
+								"214120",
+								"reporte"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "administrador"
+								},
+								{
+									"key": "api_token",
+									"value": "YXBpX3Bhc3N3b3JkCg=="
+								},
+								{
+									"key": "finicio",
+									"value": "2016-01-01"
+								},
+								{
+									"key": "ffin",
+									"value": "2018-12-31"
 								}
 							]
 						}
