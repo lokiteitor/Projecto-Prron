@@ -45,8 +45,8 @@
 		      <input type="text" class="form-control" v-model="sueldo">
 		   </div>
 		  </div>
-		  <button class="btn btn-primary" @click="sendEmployed()">Registrar Empleado</button>
 		</form>
+		<button class="btn btn-primary" @click="sendEmployed()">Registrar Empleado</button>
 	</div>
 </template>
 

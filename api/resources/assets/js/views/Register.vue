@@ -6,6 +6,10 @@
 		    	<label>Nomina</label>
 		    	<input type="text" class="form-control" v-model="nomina"><br>
 		    </div>
+		    <!-- <div class="form-group col-md-3">
+		    	<label>Platillo del día</label>
+		    	<input type="text" class="form-control" readonly v-model="food.nombre" id="DATE"><br>
+		    </div> -->
 		   </div>
 		<fieldset disabled class="watch" v-bind:class="{active: isFinded}">
 		  <div class="form-row">
@@ -33,8 +37,8 @@
 		   </div>
 		  </div>
 		</fieldset>
-		  <button class="btn btn-primary">Solicitar Pedido</button>
 		</form>
+		<button class="btn btn-primary" v-bind:class="{active: isFinded}">Solicitar Pedido</button>
 	</div>
 </template>
 
@@ -46,6 +50,7 @@
     		formData(){
     			return{
     				nomina: this.nomina,
+    				// id_comida: this.id_comida,
     				isFinded: this.isFinded
     			}
     		}
@@ -55,7 +60,7 @@
     		nomina:function(newValue){
     			this.getEmployed()
     			this.getDescription()
-    			//this.changeState()
+    			this.changeState()
     		},
     	},
 
@@ -64,7 +69,10 @@
     			employed: [],
     			description: [],
     			nomina: '',
-    			isFinded: false
+    			// food: [],
+    			isFinded: true,
+    			// today: '',
+    			// id_comida: '1'
     		}
     	},
 
@@ -83,9 +91,30 @@
                     console.log(err)
                 })
         	},
+        	// getDish(){
+        	// 	axios.get(`/api/comida/${this.id_comida}`).then(res => {
+         //            this.food = res.data.data
+         //        }).catch(err => {
+         //            console.log(err)
+         //        })
+        	// },
+        	// getDate(){
+        	// 	this.today = new Date().toJSON().slice(0,10)
+        	// 	document.getElementById("DATE").value = this.today
+        	// },
         	changeState(){
-        		this.isFinded =! this.isFinded
+        		if(this.nomina == ''){
+        			this.isFinded = true
+        		}
+        		else{
+        			this.isFinded = false
+        		}
         	}
+        },
+
+        mounted(){
+        	// this.getDish()
+        	// this.getDate()
         }
 
     }

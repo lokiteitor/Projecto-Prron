@@ -20,8 +20,8 @@
 			    	<input type="text" class="form-control" v-model="costo">
 			    </div>
 			   </div>
-			  <button class="btn btn-primary" @click="sendDish()">Registrar Platillo</button>
 			</form>
+		<button class="btn btn-primary" @click="sendDish()">Registrar Platillo</button>
 		</div>
 		<div class="card" style="width: 30rem;">
 		  <img class="card-img-top" src="https://amp.thisisinsider.com/images/5ad792ffbd967146008b45d9-750-562.jpg" alt="Card image cap">
@@ -61,14 +61,18 @@
         methods:{
         	sendDish() {
                 axios.post(`/api/comida`, this.formData).then(res =>{
-                    alert("Comida registrada")
+                    swal('Comida registrada')       
                 }).catch(err =>{
-                    alert(err)
+                    swal({
+					  type: 'error',
+					  title: 'Oops...',
+					  text: 'Something went wrong!',
+					})
                 })
                 this.nombre = '',
                 this.descripcion = '',
                 this.costo = ''
-            }
+            },
         }
 
     }
