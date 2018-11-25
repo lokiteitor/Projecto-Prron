@@ -77,6 +77,6 @@
         color: #008CEE;
     }
     .dropdown-item:active{
-        color: white    ;
+        color: white;
     }
 </style>

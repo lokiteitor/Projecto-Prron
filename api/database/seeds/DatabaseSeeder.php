@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         $departamentos = factory(App\Departamento::class,2)->create()->each(function ($departamento)
         {
-            $empleados = factory(App\Empleado::class,300)->create([
+            $empleados = factory(App\Empleado::class,20)->create([
                 'id_departamento' => $departamento->id
             ]);
             $comidas = factory(App\Comida::class,20)->create();

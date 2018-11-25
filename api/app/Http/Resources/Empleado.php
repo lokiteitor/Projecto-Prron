@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Departamento as DepartamentoResource;
+use App\Departamento;
 
 class Empleado extends JsonResource
 {
@@ -20,9 +21,10 @@ class Empleado extends JsonResource
             'ap_paterno' => $this->ap_paterno,
             'ap_materno' => $this->ap_materno,
             'direccion' => $this->direccion,
-            'departamento' => new DepartamentoResource($this->departamento),
+            'departamento' => new DepartamentoResource(Departamento::find($this->id_departamento)),
             'empleado' => $this->tipo_empleado,
-            'sueldo' => $this->sueldo
+            'sueldo' => $this->sueldo,
+            'nombre' => $this->nombre
         ];
     }
 }

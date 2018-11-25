@@ -19,6 +19,7 @@ class RegistroController extends Controller
     public function index()
     {
         // TODO : no mostrar todos los registros        
+        
     }
 
     /**
@@ -44,7 +45,8 @@ class RegistroController extends Controller
         }        
         $registro = Registro::create([
             'id_comida' => $request->comida,
-            'nomina' => $request->nomina
+            'nomina' => $request->nomina,
+            'fecha' => $request->fecha
         ]);
         return new RegistroResource($registro);
     }
@@ -92,6 +94,29 @@ class RegistroController extends Controller
     public function getEmpleadoRegistros(Request $request,$idEmpleado)
     {
         $registros = Empleado::findOrFail($idEmpleado)->registros()->paginate(30);
+        return new RegistroCollection($registros);
+    }
+
+    // api para obtener registros de fecha a fecha
+    public function getRegistrosFecha(Request $request,$idEmpleado)
+    {
+        $rules = [
+            'finicio' => 'required|date',
+            'ffin' => 'required|date|after:'.$request->finicio
+        ];
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 422);
+        } 
+        
+        // realizar las consultas
+        $registros = Empleado::findOrFail($idEmpleado)->registros()
+        ->whereBetween('created_at',[
+            $request->finicio,
+            $request->ffin
+        ])->paginate(15);
+
         return new RegistroCollection($registros);
     }
 }
