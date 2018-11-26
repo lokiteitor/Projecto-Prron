@@ -105,7 +105,10 @@
                     this.getCosto()
     				this.getDescuento()
                 }).catch(err =>{
-                    alert(err)
+                    swal({type: 'error',
+  						title: 'Oops...',
+  						text: '¡Nomina no registrada!'
+  					})
 				})
         	},
         	getCosto(){
@@ -128,6 +131,8 @@
 
 </script>
 
-<style type="text/css">
-	
+<style type="text/css" scoped>
+	.form-group{
+		margin-top: 30px;
+	}
 </style>

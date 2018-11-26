@@ -69326,19 +69326,19 @@ if (inBrowser && window.Vue) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(169)
+  __webpack_require__(199)
 }
 var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(172)
 /* template */
-var __vue_template__ = __webpack_require__(174)
+var __vue_template__ = __webpack_require__(201)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-425b2740"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -69371,46 +69371,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 169 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(170);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("ea8fd78e", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-425b2740\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mensual.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-425b2740\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mensual.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 170 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 169 */,
+/* 170 */,
 /* 171 */
 /***/ (function(module, exports) {
 
@@ -69559,7 +69521,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.getCosto();
                 _this.getDescuento();
             }).catch(function (err) {
-                alert(err);
+                swal({ type: 'error',
+                    title: 'Oops...',
+                    text: '¡Nomina no registrada!'
+                });
             });
         },
         getCosto: function getCosto() {
@@ -69845,141 +69810,7 @@ module.exports = webpackContext;
 webpackContext.id = 173;
 
 /***/ }),
-/* 174 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "row" }, [
-      _c("form", [
-        _c("div", { staticClass: "form-row" }, [
-          _c("div", { staticClass: "form-group col-md-3" }, [
-            _c("label", [_vm._v("Nomina")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.nomina,
-                  expression: "nomina"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text" },
-              domProps: { value: _vm.nomina },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.nomina = $event.target.value
-                }
-              }
-            }),
-            _c("br")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Reporte por:")]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.rango,
-                    expression: "rango"
-                  }
-                ],
-                staticClass: "custom-select",
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.rango = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
-              },
-              [
-                _c("option", { attrs: { value: "quincena" } }, [
-                  _vm._v("Quincena")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "mes" } }, [_vm._v("Mes")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "anio" } }, [_vm._v("Año")])
-              ]
-            )
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
-      _c("th", [_vm._v("Fecha")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Costo de la comida")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Diferencia")]),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.dates, function(date) {
-          return _c("tr", [
-            _c("td", [_vm._v(_vm._s(date.fecha))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(date.id_comida.costo) + "$")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(date.id_comida.costo - 20.0) + "$")])
-          ])
-        })
-      )
-    ]),
-    _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
-      _c("th", [_vm._v("Total de costo por comidas")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Diferencia que paga la empresa")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Descuento de nomina")]),
-      _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("td", [_vm._v(_vm._s(_vm.totalComida))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.total) + "$")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.descuento) + "$")])
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-425b2740", module.exports)
-  }
-}
-
-/***/ }),
+/* 174 */,
 /* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -70395,14 +70226,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [],
@@ -70489,7 +70312,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     nomina: this.nomina
                 }
             }).then(function (res) {
-                swal('Comida registrada');
+                swal('Completado', 'Se ha registrado el pedido', 'success');
             }).catch(function (err) {
                 swal({ type: 'error',
                     title: 'Oops...',
@@ -70538,33 +70361,6 @@ var render = function() {
                   return
                 }
                 _vm.nomina = $event.target.value
-              }
-            }
-          }),
-          _c("br")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group col-md-3" }, [
-          _c("label", [_vm._v("Comida")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.comida,
-                expression: "comida"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "text" },
-            domProps: { value: _vm.comida },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.comida = $event.target.value
               }
             }
           }),
@@ -70901,7 +70697,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         sendDish: function sendDish() {
             axios.post('/api/comida', this.formData).then(function (res) {
-                swal('Comida registrada');
+                swal('Completado', 'Se ha registrado la comida', 'success');
             }).catch(function (err) {
                 swal({ type: 'error',
                     title: 'Oops...',
@@ -71261,12 +71057,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     sueldo: this.sueldo
                 }
             }).then(function (res) {
-                swal('Empleado registrado');
+                swal('Completado', 'Se ha registrado el empleado', 'success');
             }).catch(function (err) {
                 swal({ type: 'error',
                     title: 'Oops...',
                     text: '¡Hay algun error en el formulario,revisa los datos!'
                 });
+                console.log(err);
             });
 
             this.nomina = '', this.nombre = '', this.ap_paterno = '', this.ap_materno = '', this.direccion = '', this.id_departamento = '', this.tipo_empleado = '', this.sueldo = '';
@@ -71555,6 +71352,184 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(200);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("31b9691c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-425b2740\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mensual.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-425b2740\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mensual.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 200 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.form-group[data-v-425b2740]{\n\tmargin-top: 30px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("form", [
+        _c("div", { staticClass: "form-row" }, [
+          _c("div", { staticClass: "form-group col-md-3" }, [
+            _c("label", [_vm._v("Nomina")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.nomina,
+                  expression: "nomina"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text" },
+              domProps: { value: _vm.nomina },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.nomina = $event.target.value
+                }
+              }
+            }),
+            _c("br")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Reporte por:")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.rango,
+                    expression: "rango"
+                  }
+                ],
+                staticClass: "custom-select",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.rango = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "quincena" } }, [
+                  _vm._v("Quincena")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "mes" } }, [_vm._v("Mes")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "anio" } }, [_vm._v("Año")])
+              ]
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table" }, [
+      _c("th", [_vm._v("Fecha")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Costo de la comida")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Diferencia")]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.dates, function(date) {
+          return _c("tr", [
+            _c("td", [_vm._v(_vm._s(date.fecha))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(date.id_comida.costo) + "$")]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(date.id_comida.costo - 20.0) + "$")])
+          ])
+        })
+      )
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table" }, [
+      _c("th", [_vm._v("Total de costo por comidas")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Diferencia que paga la empresa")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Descuento de nomina")]),
+      _vm._v(" "),
+      _c("tbody", [
+        _c("tr", [
+          _c("td", [_vm._v(_vm._s(_vm.totalComida))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(_vm.total) + "$")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(_vm.descuento) + "$")])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-425b2740", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
