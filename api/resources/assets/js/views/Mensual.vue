@@ -75,6 +75,9 @@
     				this.inicio=moment('2018-01-01').format('YY-MM-DD')
     				this.fin=moment('2018-12-31').format('YY-MM-DD')
     			}
+                this.descuento = 0.0
+                this.total=0.0
+                this.totalComida=0.0
     			this.getDate()
     		},
     	},
