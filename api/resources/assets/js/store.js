@@ -9,7 +9,7 @@ export default new Vuex.Store({
     state:{
         status: '',
         token: localStorage.getItem('token') || '',
-        usuario: {}
+        usuario: localStorage.getItem('usuario') || '',
     },
     mutations:{
         auth_request(state){
@@ -38,17 +38,19 @@ export default new Vuex.Store({
                 axios.get('/api/login',{params:usrdata}).then(res => {
                     // actualizar
                     const token = res.data.token
-                    const user = usrdata.usuario
+                    const usuario = res.data.usuario
                     localStorage.setItem('token',token)
+                    localStorage.setItem('usuario',usuario)
                     // TODO : usar este header en vez del request
                     axios.defaults.headers.common['Authorization'] = token
-                    commit('auth_success',token,user)
+                    commit('auth_success',token,usuario)
                     /// esto que hace ?
                     resolve(res)
         
                 }).catch(err => {
                     commit('auth_error')
                     localStorage.removeItem('token')
+                    localStorage.removeItem('usuario')
                     reject(err)
                 })
             })
@@ -57,6 +59,7 @@ export default new Vuex.Store({
         logout({commit}){
             return new Promise((resolve,reject) => {
                 localStorage.removeItem('token')
+                localStorage.removeItem('usuario')
                 delete axios.defaults.headers.common['Authorization']
                 resolve()
             })
@@ -64,7 +67,8 @@ export default new Vuex.Store({
     },
     getters: {
         isLoggedIn: state => !!state.token,
-        authStatus: state => state.status
+        authStatus: state => state.status,
+        authUser: state => state.usuario
     }
 });
 

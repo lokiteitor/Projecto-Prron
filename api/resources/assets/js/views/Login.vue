@@ -62,8 +62,8 @@
                         text:'Bienvenido',
                     onAfterClose:this.redirigir                     
                     }
-                    )                    
-                    
+                    )
+                    console.log(this.$store.getters.authUser)                    
                 }else{
                    swal({type: 'error',
   						title: 'Oops...',

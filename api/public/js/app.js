@@ -53185,6 +53185,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             text: 'Bienvenido',
             onAfterClose: _this.redirigir
           });
+          console.log(_this.$store.getters.authUser);
         } else {
           swal({ type: 'error',
             title: 'Oops...',
@@ -54946,7 +54947,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
     state: {
         status: '',
         token: localStorage.getItem('token') || '',
-        usuario: {}
+        usuario: localStorage.getItem('usuario') || ''
     },
     mutations: {
         auth_request: function auth_request(state) {
@@ -54976,16 +54977,18 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
                 __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/login', { params: usrdata }).then(function (res) {
                     // actualizar
                     var token = res.data.token;
-                    var user = usrdata.usuario;
+                    var usuario = res.data.usuario;
                     localStorage.setItem('token', token);
+                    localStorage.setItem('usuario', usuario);
                     // TODO : usar este header en vez del request
                     __WEBPACK_IMPORTED_MODULE_2_axios___default.a.defaults.headers.common['Authorization'] = token;
-                    commit('auth_success', token, user);
+                    commit('auth_success', token, usuario);
                     /// esto que hace ?
                     resolve(res);
                 }).catch(function (err) {
                     commit('auth_error');
                     localStorage.removeItem('token');
+                    localStorage.removeItem('usuario');
                     reject(err);
                 });
             });
@@ -54997,6 +55000,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
             return new Promise(function (resolve, reject) {
                 localStorage.removeItem('token');
+                localStorage.removeItem('usuario');
                 delete __WEBPACK_IMPORTED_MODULE_2_axios___default.a.defaults.headers.common['Authorization'];
                 resolve();
             });
@@ -55008,6 +55012,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         },
         authStatus: function authStatus(state) {
             return state.status;
+        },
+        authUser: function authUser(state) {
+            return state.usuario;
         }
     }
 }));
