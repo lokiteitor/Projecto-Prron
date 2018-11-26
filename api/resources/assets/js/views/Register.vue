@@ -5,15 +5,7 @@
 		  	<div class="form-group col-md-3">
 		    	<label>Nomina</label>
 		    	<input type="text" class="form-control" v-model="nomina"><br>
-		    </div>
-		    <!-- <div class="form-group col-md-3">
-		    	<label>Platillo del día</label>
-		    	<input type="text" class="form-control" readonly v-model="food.nombre" id="DATE"><br>
-		    </div> -->
-		  	<div class="form-group col-md-3">
-		    	<label>Comida</label>
-		    	<input type="text" class="form-control" v-model="comida"><br>
-		    </div>		
+		    </div>	
 		   </div>
 		<fieldset disabled class="watch" v-bind:class="{active: isFinded}">
 		  <div class="form-row">
@@ -131,7 +123,9 @@
 					nomina: this.nomina
 				}
 				}).then(res =>{
-                    swal('Comida registrada')
+                    swal('Completado',
+                         'Se ha registrado el pedido',
+                         'success')
                 }).catch(err =>{
                     swal({type: 'error',
   						title: 'Oops...',

@@ -103,12 +103,15 @@
     				sueldo: this.sueldo					
 				}
 				}).then(res =>{
-                    swal('Empleado registrado')
+                    swal('Completado',
+                         'Se ha registrado el empleado',
+                         'success')
                 }).catch(err =>{
                     swal({type: 'error',
   						title: 'Oops...',
   						text: '¡Hay algun error en el formulario,revisa los datos!'
   					})
+  					console.log(err)
 				})		
 
 

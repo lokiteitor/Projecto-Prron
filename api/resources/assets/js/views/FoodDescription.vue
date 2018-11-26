@@ -32,7 +32,7 @@
 	</div>
 </template>
 
-<script type="text/javascript">
+<script type="text/javascript" scoped>
 	export default {
     	mixins:[],
 
@@ -61,7 +61,9 @@
         methods:{
         	sendDish() {
                 axios.post(`/api/comida`, this.formData).then(res =>{
-                    swal('Comida registrada')       
+                    swal('Completado',
+                         'Se ha registrado la comida',
+                         'success')      
                 }).catch(err =>{
                     swal({type: 'error',
   						title: 'Oops...',
