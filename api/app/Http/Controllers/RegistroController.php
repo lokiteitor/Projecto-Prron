@@ -101,8 +101,8 @@ class RegistroController extends Controller
     public function getRegistrosFecha(Request $request,$idEmpleado)
     {
         $rules = [
-            'finicio' => 'required|date',
-            'ffin' => 'required|date|after:'.$request->finicio
+            'finicio' => 'required',
+            'ffin' => 'required|after:'.$request->finicio
         ];
         $validador = Validator::make($request->all(),$rules);
         if($validador->fails()){
