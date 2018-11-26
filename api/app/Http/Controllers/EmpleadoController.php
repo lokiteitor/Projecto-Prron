@@ -143,6 +143,7 @@ class EmpleadoController extends Controller
                 // devolver la llave
                 return response()->json([
                     'status'=>true,
+                    'usuario'=>$request->usuario,
                     'token'=>env('TOKEN_ADM')
                 ],200);
             }
@@ -155,6 +156,7 @@ class EmpleadoController extends Controller
             else{
                 return response()->json([
                     'status'=>true,
+                    'usuario'=> $request->usuario,
                     'token'=>env('TOKEN')
                 ],200);                
             }

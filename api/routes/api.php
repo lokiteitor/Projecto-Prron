@@ -17,12 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('departamento', 'DepartamentoController')->except(['create','edit']);
-Route::resource('comida', 'ComidaController')->except(['create','edit']);
-Route::resource('empleado', 'EmpleadoController')->except(['create','edit']);
-Route::resource('registro', 'RegistroController')->only(['store','destroy']);
+Route::resource('departamento', 'DepartamentoController')->except(['create','edit'])->middleware('authAPI');
+Route::resource('comida', 'ComidaController')->except(['create','edit'])->middleware('authAPI');
+Route::resource('empleado', 'EmpleadoController')->except(['create','edit'])->middleware('authAPI');
+Route::resource('registro', 'RegistroController')->only(['store','destroy'])->middleware('authAPI');
 
-Route::get('empleado/{id}/registros','RegistroController@getEmpleadoRegistros');
-Route::get('empleado/{id}/reporte','RegistroController@getRegistrosFecha');
+Route::get('empleado/{id}/registros','RegistroController@getEmpleadoRegistros')->middleware('authAPI');
+Route::get('empleado/{id}/reporte','RegistroController@getRegistrosFecha')->middleware('authAPI');
 
 Route::get('login','EmpleadoController@login');

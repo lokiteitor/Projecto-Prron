@@ -30,6 +30,11 @@
                 <router-link :to="{ name: 'reportes' }" class="nav-link">Reportes</router-link> 
               </li>
             </ul>
+            <ul class="nav justify-content-end">
+                <li class="nav-item" v-if="isLoggedIn" >
+                    <a class="nav-link" @click="logout">Logout</a>
+                </li>
+            </ul>
           </div>
         </nav>
 
@@ -39,7 +44,22 @@
     </div>
 </template>
 <script>
-    export default {}
+    export default {
+        computed: {
+            isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
+        },
+        methods: {
+        logout: function () {
+            this.$store.dispatch('logout')
+            .then(() => {
+            this.$router.push('/Ingresar')
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+        },        
+        
+    }
 </script>
 
 <style type="text/css" scoped>
