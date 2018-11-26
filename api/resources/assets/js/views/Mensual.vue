@@ -27,7 +27,19 @@
                 	<td>{{date.fecha}}</td>
                 	<td>{{date.id_comida.costo}}$</td>
                 	<td>{{date.id_comida.costo - 20.00}}$</td>
-                </tr>
+                </tr>               
+            </tbody>
+        </table>
+        <table class="table">
+            <th>Total de costo por comidas</th>
+            <th>Diferencia que paga la empresa</th>
+            <th>Descuento de nomina</th>
+            <tbody>
+                <tr>
+                	<td>{{totalComida}}</td>
+                	<td>{{total}}$</td>
+                	<td>{{descuento}}$</td>
+                </tr>               
             </tbody>
         </table>
 	</div>
@@ -62,20 +74,6 @@
     			else if(this.rango == 'anio'){
     				this.inicio=moment('2018-01-01').format('YY-MM-DD')
     				this.fin=moment('2018-12-31').format('YY-MM-DD')
-
-    			// var start = moment('2018-01-01', "YY-MM-DD")
-       //          var end = moment('2018-01-30', "YY-MM-DD")
-
-       //          for (var hour = moment(start); hour.isBefore(end); hour.add(1, 'days')) {
-       //              this.range.push(moment(hour))
-       //          }
-       //          this.range.push(moment(end))
-
-       //          this.range = this.range.map(function(hour){ 
-       //              return hour.format('YY-MM-DD') 
-       //          })
-
-
     			}
     			this.getDate()
     		},
@@ -89,6 +87,9 @@
                 rango:  '',
                 inicio: '',
                 fin: '',
+                descuento: 0.0,
+                total:0.0,
+                totalComida: 0.0
     		}
     	},
 
@@ -101,9 +102,20 @@
 				}
 				}).then(res =>{
                     this.dates = res.data.data
+                    this.getCosto()
+    				this.getDescuento()
                 }).catch(err =>{
                     alert(err)
 				})
+        	},
+        	getCosto(){
+        		for(var i=0; i < this.dates.length; i++){
+        			this.total += this.dates[i].id_comida.costo - 20.00
+        			this.totalComida += this.dates[i].id_comida.costo
+        		}
+        	},
+        	getDescuento(){
+        		this.descuento = 20.00 * this.dates.length
         	}
         },
 

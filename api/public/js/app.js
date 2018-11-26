@@ -69405,7 +69405,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -69486,6 +69486,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -69513,19 +69525,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else if (this.rango == 'anio') {
                 this.inicio = __WEBPACK_IMPORTED_MODULE_0_moment___default()('2018-01-01').format('YY-MM-DD');
                 this.fin = __WEBPACK_IMPORTED_MODULE_0_moment___default()('2018-12-31').format('YY-MM-DD');
-
-                // var start = moment('2018-01-01', "YY-MM-DD")
-                //          var end = moment('2018-01-30', "YY-MM-DD")
-
-                //          for (var hour = moment(start); hour.isBefore(end); hour.add(1, 'days')) {
-                //              this.range.push(moment(hour))
-                //          }
-                //          this.range.push(moment(end))
-
-                //          this.range = this.range.map(function(hour){ 
-                //              return hour.format('YY-MM-DD') 
-                //          })
-
             }
             this.getDate();
         }
@@ -69538,7 +69537,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             nomina: '',
             rango: '',
             inicio: '',
-            fin: ''
+            fin: '',
+            descuento: 0.0,
+            total: 0.0,
+            totalComida: 0.0
         };
     },
 
@@ -69554,9 +69556,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).then(function (res) {
                 _this.dates = res.data.data;
+                _this.getCosto();
+                _this.getDescuento();
             }).catch(function (err) {
                 alert(err);
             });
+        },
+        getCosto: function getCosto() {
+            for (var i = 0; i < this.dates.length; i++) {
+                this.total += this.dates[i].id_comida.costo - 20.00;
+                this.totalComida += this.dates[i].id_comida.costo;
+            }
+        },
+        getDescuento: function getDescuento() {
+            this.descuento = 20.00 * this.dates.length;
         }
     },
 
@@ -69935,6 +69948,24 @@ var render = function() {
           ])
         })
       )
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table" }, [
+      _c("th", [_vm._v("Total de costo por comidas")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Diferencia que paga la empresa")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Descuento de nomina")]),
+      _vm._v(" "),
+      _c("tbody", [
+        _c("tr", [
+          _c("td", [_vm._v(_vm._s(_vm.totalComida))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(_vm.total) + "$")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(_vm.descuento) + "$")])
+        ])
+      ])
     ])
   ])
 }
