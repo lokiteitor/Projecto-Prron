@@ -14,7 +14,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import Login from './views/Login'
+import Mensual from './views/Mensual'
 import App from './views/App'
 import Register from './views/Register'
 import Menu from './views/FoodDescription'
@@ -47,14 +47,14 @@ const router = new VueRouter({
                 title: 'Registro | Empleado'
             }
         },
-        // {
-        //     path: '/Ingresar',
-        //     name: 'login',
-        //     component: Login,
-        //     meta: {
-        //         title: 'Ingresar | Enterprise'
-        //     }
-        // }
+        {
+            path: '/Reportes',
+            name: 'reportes',
+            component: Mensual,
+            meta: {
+                title: 'Reportes | Enterprise'
+            }
+        }
     ],
 });
 
