@@ -5,15 +5,7 @@
 		  	<div class="form-group col-md-3">
 		    	<label>Nomina</label>
 		    	<input type="text" class="form-control" v-model="nomina"><br>
-		    </div>
-		    <!-- <div class="form-group col-md-3">
-		    	<label>Platillo del día</label>
-		    	<input type="text" class="form-control" readonly v-model="food.nombre" id="DATE"><br>
-		    </div> -->
-		  	<div class="form-group col-md-3">
-		    	<label>Comida</label>
-		    	<input type="text" class="form-control" v-model="comida"><br>
-		    </div>		
+		    </div>	
 		   </div>
 		<fieldset disabled class="watch" v-bind:class="{active: isFinded}">
 		  <div class="form-row">
@@ -69,6 +61,7 @@
     			if(this.nomina.length == 6){
     				this.getEmployed()
 	    			this.getDescription()
+                    // this.getDate()
 	    			this.isFinded = false
     			}
     			else{
@@ -112,10 +105,6 @@
          //            console.log(err)
          //        })
         	// },
-        	// getDate(){
-        	// 	this.today = new Date().toJSON().slice(0,10)
-        	// 	document.getElementById("DATE").value = this.today
-        	// },
         	// changeState(){
         	// 	if(this.nomina == ''){
         	// 		this.isFinded = true
@@ -134,7 +123,9 @@
 					nomina: this.nomina
 				}
 				}).then(res =>{
-                    swal('Comida registrada')
+                    swal('Completado',
+                         'Se ha registrado el pedido',
+                         'success')
                 }).catch(err =>{
                     swal({type: 'error',
   						title: 'Oops...',

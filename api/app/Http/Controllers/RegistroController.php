@@ -7,6 +7,7 @@ use App\Http\Resources\Registro as RegistroResource;
 use App\Registro_comida as Registro;
 use App\Empleado;
 use App\Http\Resources\RegistroCollection;
+use App\Comida;
 use Validator;
 
 class RegistroController extends Controller
@@ -34,7 +35,6 @@ class RegistroController extends Controller
         $fecha = date('Y-n-d');
 
         $rules = [
-            'comida' => 'required|integer|exists:comidas,id',
             'nomina' => 'required|integer|exists:empleados,nomina',
         ];
 
@@ -44,7 +44,7 @@ class RegistroController extends Controller
             return response()->json($errors, 422);
         }        
         $registro = Registro::create([
-            'id_comida' => $request->comida,
+            'id_comida' => Comida::all()->random()->id,
             'nomina' => $request->nomina,
             'fecha' => $fecha
         ]);
@@ -115,7 +115,7 @@ class RegistroController extends Controller
         ->whereBetween('fecha',[
             $request->finicio,
             $request->ffin
-        ])->paginate(15);
+        ])->get();
 
         return new RegistroCollection($registros);
     }
