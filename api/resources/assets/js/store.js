@@ -26,7 +26,13 @@ export default new Vuex.Store({
         logout(state){
             state.status = ''
             state.token = ''
+        },
+        noauth(state){
+            state.status = ''
+            state.token = ''
+            state.usuario = ''
         }
+
 
     },
     actions: {
@@ -60,6 +66,7 @@ export default new Vuex.Store({
             return new Promise((resolve,reject) => {
                 localStorage.removeItem('token')
                 localStorage.removeItem('usuario')
+                commit('noauth')
                 delete axios.defaults.headers.common['Authorization']
                 resolve()
             })

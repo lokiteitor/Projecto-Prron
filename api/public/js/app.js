@@ -71648,6 +71648,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         logout: function logout(state) {
             state.status = '';
             state.token = '';
+        },
+        noauth: function noauth(state) {
+            state.status = '';
+            state.token = '';
+            state.usuario = '';
         }
     },
     actions: {
@@ -71685,6 +71690,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
             return new Promise(function (resolve, reject) {
                 localStorage.removeItem('token');
                 localStorage.removeItem('usuario');
+                commit('noauth');
                 delete __WEBPACK_IMPORTED_MODULE_2_axios___default.a.defaults.headers.common['Authorization'];
                 resolve();
             });
