@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-    <div class="row">
+    <div class="row" v-if="isLoggedIn">
         <div class="col col-lg-2">
             <img src="http://pluspng.com/img-png/png-logo-design-fancy-png-logo-design-91-on-professional-logo-design-with-png-logo-design-734.png" class="resize" />
         </div>
@@ -9,24 +9,24 @@
         </div>
     </div>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" v-if="isLoggedIn">
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
+              <li class="nav-item" v-if="isLoggedIn">
                 <router-link :to="{ name: 'register' }" class="nav-link">Consumo</router-link> 
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown" v-if="isLoggedIn">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Registro
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" v-if="isLoggedIn">
                   <router-link :to="{ name: 'employed' }" class="dropdown-item">
                   Empleado</router-link>
                   <div class="dropdown-divider"></div>
                   <router-link :to="{ name: 'menu' }" class="dropdown-item">Comida</router-link>
                 </div>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" v-if="isLoggedIn">
                 <router-link :to="{ name: 'reportes' }" class="nav-link">Reportes</router-link> 
               </li>
             </ul>

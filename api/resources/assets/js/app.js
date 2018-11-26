@@ -66,7 +66,8 @@ const router = new VueRouter({
             name: 'reportes',
             component: Mensual,
             meta: {
-                title: 'Reportes | Enterprise'
+                title: 'Reportes | Enterprise',
+                requiresAuth: true
             }
         },
         {

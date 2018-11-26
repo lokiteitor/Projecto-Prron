@@ -41749,7 +41749,8 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
         name: 'reportes',
         component: __WEBPACK_IMPORTED_MODULE_2__views_Mensual___default.a,
         meta: {
-            title: 'Reportes | Enterprise'
+            title: 'Reportes | Enterprise',
+            requiresAuth: true
         }
     }, {
         path: '/Ingresar',
@@ -70195,109 +70196,121 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
+    _vm.isLoggedIn
+      ? _c("div", { staticClass: "row" }, [_vm._m(0), _vm._v(" "), _vm._m(1)])
+      : _vm._e(),
     _vm._v(" "),
-    _c(
-      "nav",
-      { staticClass: "navbar navbar-expand-lg navbar-dark bg-primary" },
-      [
-        _c("div", { staticClass: "collapse navbar-collapse" }, [
-          _c("ul", { staticClass: "navbar-nav mr-auto" }, [
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-link",
-                    attrs: { to: { name: "register" } }
-                  },
-                  [_vm._v("Consumo")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item dropdown" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link dropdown-toggle",
-                  attrs: {
-                    href: "#",
-                    id: "navbarDropdown",
-                    role: "button",
-                    "data-toggle": "dropdown",
-                    "aria-haspopup": "true",
-                    "aria-expanded": "false"
-                  }
-                },
-                [_vm._v("\n              Registro\n            ")]
-              ),
+    _vm.isLoggedIn
+      ? _c(
+          "nav",
+          { staticClass: "navbar navbar-expand-lg navbar-dark bg-primary" },
+          [
+            _c("div", { staticClass: "collapse navbar-collapse" }, [
+              _c("ul", { staticClass: "navbar-nav mr-auto" }, [
+                _vm.isLoggedIn
+                  ? _c(
+                      "li",
+                      { staticClass: "nav-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: { name: "register" } }
+                          },
+                          [_vm._v("Consumo")]
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isLoggedIn
+                  ? _c("li", { staticClass: "nav-item dropdown" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link dropdown-toggle",
+                          attrs: {
+                            href: "#",
+                            id: "navbarDropdown",
+                            role: "button",
+                            "data-toggle": "dropdown",
+                            "aria-haspopup": "true",
+                            "aria-expanded": "false"
+                          }
+                        },
+                        [_vm._v("\n              Registro\n            ")]
+                      ),
+                      _vm._v(" "),
+                      _vm.isLoggedIn
+                        ? _c(
+                            "div",
+                            {
+                              staticClass: "dropdown-menu",
+                              attrs: { "aria-labelledby": "navbarDropdown" }
+                            },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { to: { name: "employed" } }
+                                },
+                                [_vm._v("\n              Empleado")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "dropdown-divider" }),
+                              _vm._v(" "),
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { to: { name: "menu" } }
+                                },
+                                [_vm._v("Comida")]
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isLoggedIn
+                  ? _c(
+                      "li",
+                      { staticClass: "nav-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: { name: "reportes" } }
+                          },
+                          [_vm._v("Reportes")]
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e()
+              ]),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "dropdown-menu",
-                  attrs: { "aria-labelledby": "navbarDropdown" }
-                },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "dropdown-item",
-                      attrs: { to: { name: "employed" } }
-                    },
-                    [_vm._v("\n              Empleado")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "dropdown-item",
-                      attrs: { to: { name: "menu" } }
-                    },
-                    [_vm._v("Comida")]
-                  )
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-link",
-                    attrs: { to: { name: "reportes" } }
-                  },
-                  [_vm._v("Reportes")]
-                )
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "nav justify-content-end" }, [
-            _vm.isLoggedIn
-              ? _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    { staticClass: "nav-link", on: { click: _vm.logout } },
-                    [_vm._v("Logout")]
-                  )
-                ])
-              : _vm._e()
-          ])
-        ])
-      ]
-    ),
+              _c("ul", { staticClass: "nav justify-content-end" }, [
+                _vm.isLoggedIn
+                  ? _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        { staticClass: "nav-link", on: { click: _vm.logout } },
+                        [_vm._v("Logout")]
+                      )
+                    ])
+                  : _vm._e()
+              ])
+            ])
+          ]
+        )
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [_c("router-view")], 1)
   ])
@@ -70307,20 +70320,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col col-lg-2" }, [
-        _c("img", {
-          staticClass: "resize",
-          attrs: {
-            src:
-              "http://pluspng.com/img-png/png-logo-design-fancy-png-logo-design-91-on-professional-logo-design-with-png-logo-design-734.png"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md" }, [
-        _c("h1", { staticClass: "title" }, [_vm._v("Nombre de la empresa")])
-      ])
+    return _c("div", { staticClass: "col col-lg-2" }, [
+      _c("img", {
+        staticClass: "resize",
+        attrs: {
+          src:
+            "http://pluspng.com/img-png/png-logo-design-fancy-png-logo-design-91-on-professional-logo-design-with-png-logo-design-734.png"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md" }, [
+      _c("h1", { staticClass: "title" }, [_vm._v("Nombre de la empresa")])
     ])
   }
 ]
