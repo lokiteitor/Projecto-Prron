@@ -47,14 +47,14 @@ const router = new VueRouter({
                 title: 'Registro | Empleado'
             }
         },
-        // {
-        //     path: '/Ingresar',
-        //     name: 'login',
-        //     component: Login,
-        //     meta: {
-        //         title: 'Ingresar | Enterprise'
-        //     }
-        // }
+        {
+            path: '/Ingresar',
+            name: 'login',
+            component: Login,
+            meta: {
+                title: 'Ingresar | Enterprise'
+            }
+        }
     ],
 });
 
