@@ -46,7 +46,7 @@ class RegistroController extends Controller
         $registro = Registro::create([
             'id_comida' => $request->comida,
             'nomina' => $request->nomina,
-            'fecha' => $request->fecha
+            'fecha' => $fecha
         ]);
         return new RegistroResource($registro);
     }
