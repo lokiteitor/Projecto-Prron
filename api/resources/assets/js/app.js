@@ -19,6 +19,7 @@ import App from './views/App'
 import Register from './views/Register'
 import Menu from './views/FoodDescription'
 import Employed from './views/Employed'
+import Login from './views/Login'
 
 import store from './store'
 import Axios from 'axios'
