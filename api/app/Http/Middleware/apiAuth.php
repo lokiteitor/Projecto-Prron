@@ -24,13 +24,13 @@ class apiAuth
         }
 
         if($request->user == 'administrador'){
-            if(!($request->api_token == env('API_TOKEN_ADM'))){
+            if(!($request->api_token == env('TOKEN_ADM'))){
                 return response()->json(['mensaje'=>'No autorizado'],401);
             }
             return $next($request);
         }
         else if($request->user == 'empleado'){
-            if(!($request->api_token == env('API_TOKEN_EMP'))){
+            if(!($request->api_token == env('TOKEN'))){
                 return response()->json(['mensaje'=>'No autorizado'],401);
             }
         }

@@ -1,40 +1,84 @@
 <template>
-	<div class="container">
-  <div id="row">
-    <!-- Tabs Titles -->
+    <div class="container">
+        <div class="row">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="col-md-12 ">
+                <img src="http://pluspng.com/img-png/png-logo-design-fancy-png-logo-design-91-on-professional-logo-design-with-png-logo-design-734.png"
+                    class="center resize" />
+            </div>
+        </div>
+        <div class="row">
+            <class class="col-md-4 offset-md-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4 class="card-title">Login</h4>
+                    </div>
+                    <div class="card-body">
 
-    <!-- Icon -->
-    <div class="col-md-12 ">
-      <img src="http://pluspng.com/img-png/png-logo-design-fancy-png-logo-design-91-on-professional-logo-design-with-png-logo-design-734.png" class="center resize" />
+                        <div class="form-group">
+                            <label>Usuario</label>
+                            <input type="email" class="form-control" placeholder="Usuario" aria-describedby="helpId" v-model="usuario">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" class="form-control" placeholder="Constraseña" v-model="password">
+                        </div>
+
+                        <div class="form-group">
+                            <button type="button" class="btn center btn-primary" @click="login()">Ingresar</button>
+                        </div>
+                    </div>
+                </div>
+            </class>
+        </div>
+        <br>
     </div>
-
-    <!-- Login Form -->
-    <form>
-    <div class="form-row justify-content-md-center">
-	    <div class="form-group col-md-auto">
-	      <input type="text" id="login" class="form-control" name="login" placeholder="Usuario">
-	    </div>
-	    <div class="w-100"></div>
-	    <div class="form-group col-md-auto">
-	      <input type="password" id="password" class="form-control" name="login" placeholder="Contraseña">
-	    </div>
-	    <div class="w-100"></div>
-	      <div class="form-group col-md-auto">
-	      <button class="btn btn-primary">Entrar</button>
-	      </div>
-    </div>
-    </form>
-
-  </div>
-</div>
 </template>
-<style type="text/css">
-	.center {
-	    display: block;
-	  	margin: 20px auto 20px auto;  
+
+<script>
+    export default {
+	computed:{
+		formData: function(){
+			return {
+				usuario: this.usuario,
+				password: this.password
+			}
+		}
+	},
+	data(){
+		return{
+			password:null,
+			usuario:null
+		}
+	},
+	methods:{
+		login(){
+            axios.get('/api/login',{params:this.formData}).then(res => {
+                swal('Bienvenido')
+            }).catch( err => {
+                   swal({type: 'error',
+  						title: 'Oops...',
+  						text: '¡Hay algun error en el formulario,revisa los datos!'
+  					})                
+            })
+		}
 	}
-	.resize{
+}
+</script>
+
+
+
+<style type="text/css">
+    .center {
+        display: block;
+        margin: 20px auto 20px auto;
+    }
+
+    .resize {
         width: 10vw;
         height: 20vh;
     }
+
 </style>

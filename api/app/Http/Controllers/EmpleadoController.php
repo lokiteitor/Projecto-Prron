@@ -120,4 +120,45 @@ class EmpleadoController extends Controller
         $empleado->delete();
         return response()->json(['mensaje'=>'Elemento eliminado'],204);
     }
+
+    public function login(Request $request)
+    {
+        // revisar las credenciales
+        $rules = [
+            'usuario' => 'required',
+            'password' => 'required'
+        ];
+
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 401);
+        }
+        
+        if($request->usuario == 'administrador'){
+            if(!($request->password == env('API_TOKEN_ADM'))){
+                return response()->json(['status'=>false],401);
+            }
+            else{
+                // devolver la llave
+                return response()->json([
+                    'status'=>true,
+                    'token'=>env('TOKEN_ADM')
+                ],200);
+            }
+            
+        }
+        else if($request->usuario == 'empleado'){
+            if(!($request->password == env('API_TOKEN_EMP'))){
+                return response()->json(['status'=>false],401);
+            }
+            else{
+                return response()->json([
+                    'status'=>true,
+                    'token'=>env('TOKEN')
+                ],200);                
+            }
+        }
+    }
+
 }

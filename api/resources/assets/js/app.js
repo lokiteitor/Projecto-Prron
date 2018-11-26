@@ -54,6 +54,14 @@ const router = new VueRouter({
             meta: {
                 title: 'Reportes | Enterprise'
             }
+        },
+        {
+            path: '/Ingresar',
+            name: 'login',
+            component: Login,
+            meta: {
+                title: 'Ingresar | Enterprise'
+            }
         }
     ],
 });
