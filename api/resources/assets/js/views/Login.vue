@@ -55,15 +55,32 @@
 	},
 	methods:{
 		login(){
-            axios.get('/api/login',{params:this.formData}).then(res => {
-                swal('Bienvenido')
-            }).catch( err => {
+
+            this.$store.dispatch('login',this.formData).then(res => {
+                if(this.$store.getters.isLoggedIn){
+                    swal({
+                        text:'Bienvenido',
+                    onAfterClose:this.redirigir                     
+                    }
+                    )                    
+                    
+                }else{
+                   swal({type: 'error',
+  						title: 'Oops...',
+                          text: '¡Hay algun error en el formulario,revisa los datos!'
+  					})                     
+                }
+            }).catch(err => {
                    swal({type: 'error',
   						title: 'Oops...',
   						text: '¡Hay algun error en el formulario,revisa los datos!'
-  					})                
+  					}) 
             })
-		}
+        },
+        redirigir(){
+            // redirigir
+            this.$router.push('/')
+        }        
 	}
 }
 </script>

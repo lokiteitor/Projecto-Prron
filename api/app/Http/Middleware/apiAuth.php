@@ -15,25 +15,13 @@ class apiAuth
      */
     public function handle($request, Closure $next)
     {
-        $validador = Validator::make($request->all(),[
-            'user' => 'required',
-            'api_token' => 'required'
-        ]);
-        if($validador->fails()){
+
+        if($request->header('Authorization') == env('TOKEN_ADM') || $request->header('Authorization') == env('TOKEN') ){
+            return $next($request);                
+        }else{
             return response()->json(['mensaje'=>'No autorizado'],401);
         }
 
-        if($request->user == 'administrador'){
-            if(!($request->api_token == env('TOKEN_ADM'))){
-                return response()->json(['mensaje'=>'No autorizado'],401);
-            }
-            return $next($request);
-        }
-        else if($request->user == 'empleado'){
-            if(!($request->api_token == env('TOKEN'))){
-                return response()->json(['mensaje'=>'No autorizado'],401);
-            }
-        }
-        return $next($request);
+        
     }
 }

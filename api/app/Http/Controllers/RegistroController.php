@@ -112,7 +112,7 @@ class RegistroController extends Controller
         
         // realizar las consultas
         $registros = Empleado::findOrFail($idEmpleado)->registros()
-        ->whereBetween('created_at',[
+        ->whereBetween('fecha',[
             $request->finicio,
             $request->ffin
         ])->paginate(15);

@@ -20,6 +20,16 @@ import Register from './views/Register'
 import Menu from './views/FoodDescription'
 import Employed from './views/Employed'
 
+import store from './store'
+import Axios from 'axios'
+
+Vue.prototype.$http = Axios;
+Vue.prototype.$store = store;
+const token = localStorage.getItem('token')
+if (token) {
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
+}
+
 const router = new VueRouter({
     mode: 'history',
     routes: [
@@ -28,7 +38,8 @@ const router = new VueRouter({
             name: 'register',
             component: Register,
             meta: {
-                title: 'Enterprise Name'
+                title: 'Enterprise Name',
+                requiresAuth: true
             }
         },
         {
@@ -36,7 +47,8 @@ const router = new VueRouter({
             name: 'menu',
             component: Menu,
             meta: {
-                title: 'Registro | Platillo'
+                title: 'Registro | Platillo',
+                requiresAuth: true
             }
         },
         {
@@ -44,7 +56,8 @@ const router = new VueRouter({
             name: 'employed',
             component: Employed,
             meta: {
-                title: 'Registro | Empleado'
+                title: 'Registro | Empleado',
+                requiresAuth: true
             }
         },
         {
@@ -62,7 +75,18 @@ const router = new VueRouter({
 //Condicion para colocar el titulo de cada pagina
 router.beforeEach((to, from, next) => {
     document.title = _.defaultTo(to.meta.title, '');
-    next();
+    if(to.matched.some(record => record.meta.requiresAuth)){
+        if(store.getters.isLoggedIn){
+            next()            
+        }
+        else{
+            next('/Ingresar')
+            
+        }
+    }
+    else{
+        next()
+    }
 });
 
 //Creacion del componente app
@@ -71,3 +95,5 @@ const app = new Vue({
     components: { App },
     router,
 });
+
+Vue.prototype.$router = router
