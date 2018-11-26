@@ -26,6 +26,9 @@
                   <router-link :to="{ name: 'menu' }" class="dropdown-item">Comida</router-link>
                 </div>
               </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'reportes' }" class="nav-link">Reportes</router-link> 
+              </li>
             </ul>
           </div>
         </nav>

@@ -69,6 +69,7 @@
     			if(this.nomina.length == 6){
     				this.getEmployed()
 	    			this.getDescription()
+                    // this.getDate()
 	    			this.isFinded = false
     			}
     			else{
@@ -111,10 +112,6 @@
          //        }).catch(err => {
          //            console.log(err)
          //        })
-        	// },
-        	// getDate(){
-        	// 	this.today = new Date().toJSON().slice(0,10)
-        	// 	document.getElementById("DATE").value = this.today
         	// },
         	// changeState(){
         	// 	if(this.nomina == ''){
